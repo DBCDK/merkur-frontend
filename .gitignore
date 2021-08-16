@@ -1,0 +1,45 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+/target
+e2e/cypress/screenshots
+e2e/cypress/videos
+
+# next.js
+/.next/
+/out/
+dist
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+*api.txt
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+target
+
+# vercel
+.vercel
+
+# IntelliJ idea
+.idea
+
+# Cypress
+e2e/cypress/screenshots/
+e2e/cypress/videos/cases/

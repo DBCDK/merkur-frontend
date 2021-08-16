@@ -1,0 +1,24 @@
+version: "3"
+services:
+  web:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
+    image: "${IMAGE}"
+    environment:
+      - ENABLE_STORYBOOK=1
+      - STORYBOOK_PORT=4000
+      - PORT=3000
+      - NEXT_AUTH_URL=http://web:3000
+      - FILESTORE_URL=MOCKME
+    command: npm run start
+  e2e:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
+    image: "${CYPRESS_IMAGE}"
+    volumes:
+      - "./target:/app/e2e:rw"
+    depends_on:
+      - web
+    environment:
+      - CYPRESS_baseUrl=http://web:4000
+      - CYPRESS_nextjsBaseUrl=http://web:3000
+      - ELECTRON_ENABLE_LOGGING=0
+    command: bash -c "umask 002 && sudo chmod 1777 /dev/shm && npm run cy"
