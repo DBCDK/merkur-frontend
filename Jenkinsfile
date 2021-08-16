@@ -10,11 +10,21 @@ pipeline {
         IMAGE_NAME = "${BASE_NAME}:${IMAGE_TAG}"
 		GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
 	}
+    triggers {
+        upstream(upstreamProjects: "Docker-base-node-bump-trigger",
+            threshold: hudson.model.Result.SUCCESS)
+    }
 	options {
 		timestamps()
 		disableConcurrentBuilds()
 	}
 	stages {
+        stage('Clear workspace') {
+            steps {
+                deleteDir()
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
                 script {
