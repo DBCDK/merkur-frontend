@@ -27,12 +27,12 @@ pipeline {
                 }
             }
         }
-        stage('verify') {
-            steps {
-                sh "./test.sh"
-                junit testResults: 'target/reports/test-result*.xml'
-            }
-        }
+//         stage('verify') {
+//             steps {
+//                 sh "./test.sh"
+//                 junit testResults: 'target/reports/test-result*.xml'
+//             }
+//         }
 		stage("docker push") {
 			when {
 				branch "main"
