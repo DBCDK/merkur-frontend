@@ -53,24 +53,24 @@ pipeline {
 				}
 			}
 		}
-//         stage("bump docker tag in merkur-service-secrets") {
-// 			agent {
-// 				docker {
-// 					label workerNode
-// 					image "docker.dbc.dk/build-env:latest"
-// 					alwaysPull true
-// 				}
-// 			}
-// 			when {
-// 				branch "main"
-// 			}
-// 			steps {
-// 				script {
-// 					sh """
-//                         set-new-version services/merkur-frontend.yml ${env.GITLAB_PRIVATE_TOKEN} metascrum/merkur-service-secrets  ${env.IMAGE_TAG} -b staging
-//                      """
-// 				}
-// 			}
-// 		}
+        stage("bump docker tag in merkur-service-secrets") {
+			agent {
+				docker {
+					label workerNode
+					image "docker.dbc.dk/build-env:latest"
+					alwaysPull true
+				}
+			}
+			when {
+				branch "main"
+			}
+			steps {
+				script {
+					sh """
+                        set-new-version services/merkur-frontend.yml ${env.GITLAB_PRIVATE_TOKEN} metascrum/merkur-frontend-secrets  ${env.IMAGE_TAG} -b staging
+                     """
+				}
+			}
+		}
 	}
 }
