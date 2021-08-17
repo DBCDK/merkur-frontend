@@ -16,6 +16,7 @@
   "dependencies": {
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.6.0",
+    "dbc-node-logger": "^2.0.9",
     "eslint": "^7.7.0",
     "eslint-plugin-prettier": "^3.1.4",
     "font-awesome": "^4.7.0",
