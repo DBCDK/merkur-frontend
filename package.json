@@ -11,15 +11,18 @@
     "start": "next start",
     "prettier:format": "prettier --config .prettierrc --write **/*.{md,yml,json,js}",
     "prettier:ci": "prettier **/*.{md,yml,json,js} --check",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "test": "jest src/"
   },
   "dependencies": {
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.0",
     "bootstrap": "^4.6.0",
     "dbc-node-logger": "^2.0.9",
     "eslint": "^7.7.0",
     "eslint-plugin-prettier": "^3.1.4",
     "font-awesome": "^4.7.0",
+    "jest": "^26.6.0",
     "next": "^11.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
