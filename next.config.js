@@ -25,6 +25,7 @@ module.exports = (phase, { defautConfig }) => {
     i18n: {
       locales: ["da", "en"],
       defaultLocale: "da",
+      localeDetection: false,
     },
     webpack(config) {
       config.module.rules.push({
