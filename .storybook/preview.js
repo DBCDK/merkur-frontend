@@ -11,12 +11,12 @@ import { addDecorator } from "@storybook/react";
 // Make Next.js Link tags work in storybook by mocking the router
 // https://www.npmjs.com/package/storybook-addon-next-router
 addDecorator(
-    withNextRouter({
-        async replace(path) {
-            alert(path);
-        },
-        async push(path) {
-            alert(path);
-        },
-    })
+  withNextRouter({
+    async replace(path) {
+      alert(path);
+    },
+    async push(path) {
+      alert(path);
+    },
+  })
 );
