@@ -1,12 +1,27 @@
 import React from "react";
 import { Sidebar } from "@/components/sidebar";
+import {useSession} from "next-auth/client";
+import {signIn, signOut} from "@dbcdk/login-nextjs/client";
 
 export default function Index() {
+    const [session] = useSession();
   return (
     <div className="align-center">
       <header>
         <div>
           <h4>DBCs Posthus</h4>
+            {!session && (
+                <>
+                    <button style={{float: 'right'}} onClick={() => signIn()}>Sign in</button>
+                </>
+            )}
+            {session && (
+                <>
+                    - {session.user.id} <br />
+                    <button onClick={() => signOut()}>Log ud</button>
+                    <div>{name}</div>;
+                </>
+            )}
         </div>
       </header>
       <div>
