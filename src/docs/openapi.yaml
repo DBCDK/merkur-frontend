@@ -1,0 +1,100 @@
+openapi: 3.0.1
+info:
+  title: Merkur frontend
+  description: >-
+    Provides rest API services for the merkur system.
+  license:
+    name: GPL-3.0
+    url: 'https://github.com/DBCDK/promat-service/blob/master/LICENCE.txt'
+  version: 1.0-SNAPSHOT
+paths:
+  /files:
+    get:
+      summary: Lists information about all files available
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileList"
+
+  /files/{id}:
+    get:
+      summary: Retrieves file content
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+  /files/unclaimed:
+    get:
+      summary: Lists information about all unclaimed files available
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileList"
+
+  /files/{id}/claimed:
+    post:
+      summary: Acknowledges file retrieval for specific file
+      security:
+        - basicAuth: [ ]
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Attempt to claim file owned by another agency
+          content:
+            plain/text:
+              schema:
+                type: string
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: basic
+      in: header
+
+  schemas:
+    FileList:
+      type: object
+      properties:
+        filename:
+          type: string
+        origin:
+          type: string
+        creationTimeUTC:
+          type: string
+          format: ISO date time
+        byteSize:
+          type: integer
+        downloadUrl:
+          type: string
+          format: url
+        claimedUrl:
+          type: string
+          format: url
+      required:
+        - filename
+        - origin
+        - creationTimeUTC
+        - byteSize
+        - downloadUrl
+
+security:
+  - BearerAuth: []
