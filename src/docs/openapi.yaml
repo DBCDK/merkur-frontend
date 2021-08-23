@@ -27,7 +27,62 @@ paths:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
+  /conversions:
+    get:
+      summary: Lists information about all conversions files available
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileList"
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
+  /periodic-jobs:
+    get:
+      summary: Lists information about all conversions files available
+      security:
+        - basicAuth: [ ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileList"
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
   /files/{id}:
     get:
       summary: Retrieves file content
@@ -55,7 +110,12 @@ paths:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
   /files/unclaimed:
     get:
       summary: Lists information about all unclaimed files available
@@ -75,7 +135,62 @@ paths:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
+  /conversions/unclaimed:
+    get:
+      summary: Lists information about all unclaimed conversions files available
+      security:
+        - basicAuth: [ ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileList"
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
+  /periodic-jobs/unclaimed:
+    get:
+      summary: Lists information about all unclaimed periodic-jobs files available
+      security:
+        - basicAuth: [ ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileList"
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
   /files/{id}/claimed:
     post:
       summary: Acknowledges file retrieval for specific file
@@ -104,7 +219,12 @@ paths:
             plain/text:
               schema:
                 type: string
-
+        '405':
+          description: Method not allowed
+          content:
+            plain/text:
+              schema:
+                type: string
 components:
   securitySchemes:
     BearerAuth:
