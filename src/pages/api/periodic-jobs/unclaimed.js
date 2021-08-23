@@ -1,4 +1,4 @@
-import {defaultCategory} from "@/constants";
+import {defaultCategory, periodicJobsOrigin} from "@/constants";
 import {log} from "dbc-node-logger";
 import {authenticate} from "@/components/api-validator";
 import {mapToFileObjectList} from "@/components/file-helper";
@@ -9,11 +9,12 @@ export default async function handler(req, res) {
 
     if (agencyId !== undefined) {
         if (req.method === "GET") {
-            log.info(agencyId + " getting unclaimed files");
+            log.info(agencyId + " getting unclaimed periodic-jobs files");
 
             const data = {
                 "agencyId": agencyId,
                 "category": defaultCategory,
+                "origin": periodicJobsOrigin,
                 "claimed": false
             }
             const response = await fetch(`${process.env.FILESTORE_URL}/files`, {

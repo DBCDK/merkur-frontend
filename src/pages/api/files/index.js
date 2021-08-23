@@ -1,11 +1,10 @@
-import {defaultCategory} from "@/constants";
 import {log} from "dbc-node-logger";
 import {authenticate} from "@/components/api-validator";
+import {defaultCategory} from "@/constants";
 import {mapToFileObjectList} from "@/components/file-helper";
 
 
 export default async function handler(req, res) {
-    const FILESTORE_URL = `${process.env.FILESTORE_URL}/files`;
     const agencyId = authenticate(req, res);
 
     if (agencyId !== undefined) {
@@ -16,7 +15,7 @@ export default async function handler(req, res) {
                 "agencyId": agencyId,
                 "category": defaultCategory
             }
-            const response = await fetch(FILESTORE_URL, {
+            const response = await fetch(`${process.env.FILESTORE_URL}/files`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

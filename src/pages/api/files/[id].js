@@ -7,15 +7,13 @@ export default async function handler(req, res) {
 
     if (agencyId !== undefined) {
         if (req.method === "GET") {
-            log.info(agencyId + " getting file with id " + req.params.id);
+            const {
+                query: { id: fileId },
+            } = req;
+            log.info(agencyId + " getting file with id " + fileId);
 
-            const fileId = req.params.id;
-            const params = {
-                "id": id
-            }
             const attributeResponse = await fetch(`${process.env.FILESTORE_URL}/files/${fileId}/attributes`, {
                 method: "GET",
-                body: JSON.stringify(params),
                 headers: {
                     "Content-Type": "application/json",
                 }
@@ -29,13 +27,12 @@ export default async function handler(req, res) {
 
             const response = await fetch(`${process.env.FILESTORE_URL}/files/${fileId}`, {
                 method: "GET",
-                body: JSON.stringify(params),
                 headers: {
                     "Content-Type": "application/json",
                 },
             });
 
-            return res.status(200).send(response.body)
+            return res.status(response.status).send(response.body)
         } else {
             return res
                 .status(405)

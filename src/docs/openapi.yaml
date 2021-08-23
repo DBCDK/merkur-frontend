@@ -20,12 +20,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
 
   /files/{id}:
     get:
       summary: Retrieves file content
       security:
         - basicAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            description: File id
       responses:
         '200':
           description: OK
@@ -34,6 +48,13 @@ paths:
               schema:
                 type: string
                 format: binary
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
 
   /files/unclaimed:
     get:
@@ -47,15 +68,36 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
 
   /files/{id}/claimed:
     post:
       summary: Acknowledges file retrieval for specific file
       security:
         - basicAuth: [ ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            description: File id
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
+          content:
+            plain/text:
+              schema:
+                type: string
+                description: Description of what went wrong with authentication
         '403':
           description: Attempt to claim file owned by another agency
           content:
