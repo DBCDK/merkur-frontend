@@ -1,0 +1,22 @@
+.header {
+    background-color: black;
+    border-color: transparent;
+    color: white;
+    padding: 0.3rem;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+}
+
+.header h4 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.header a {
+    float: right;
+    color: #337ab7;
+}
