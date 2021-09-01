@@ -4,7 +4,7 @@ import { log } from "dbc-node-logger";
 const apiKeys = JSON.parse(process.env.APIKEYS);
 
 export function authenticate(req, res) {
-  if (req.session?.agencyid) {
+  if (req.session?.user?.netpunktAgency) {
     log.debug("Authenticating via session");
     return req.session.agencyid;
   }

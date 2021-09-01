@@ -1,9 +1,24 @@
-import React from "react";
-import {useSession} from "next-auth/client";
+import React, {useCallback, useEffect} from "react";
+import {getSession, useSession} from "next-auth/client";
+import {signIn} from "@dbcdk/login-nextjs/client";
+
 
 export default function Index() {
     const [session] = useSession();
-    if (!session?.id) {
+
+    const waitForSession = useCallback(async () => {
+        let s = await getSession()
+        if (!s) {
+            signIn();
+        }
+    }, [session])
+
+    useEffect(() => {
+        waitForSession()
+    }, [])
+
+
+    if (session) {
         return (
             <div className="align-center">
                 <h1 data-cy="welcome-text">Velkommen til Merkur</h1>

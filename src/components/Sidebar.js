@@ -11,12 +11,12 @@ export function Sidebar() {
             <nav id="sidebar">
                 <ul>
                     <li>
-                        <Link href="/conversionsservice">
+                        <Link href="/conversions">
                             <a>Konverteringsservice</a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/datadelivery">
+                        <Link href="/periodic-jobs">
                             <a>Dataleverancer</a>
                         </Link>
                     </li>

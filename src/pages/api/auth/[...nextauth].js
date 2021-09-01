@@ -1,12 +1,7 @@
 import NextAuth from "next-auth";
 import {adgangsplatformen, callbacks} from "@dbcdk/login-nextjs";
-import {log} from "dbc-node-logger";
 
 const options = {
-    debug: false,
-    session: {
-        maxAge: 60 * 60,
-    },
     providers: [
         {
             ...adgangsplatformen({

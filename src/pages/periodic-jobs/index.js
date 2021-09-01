@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {getSession, useSession} from "next-auth/client";
 import {useCallback, useEffect} from "react";
 import {signIn} from "@dbcdk/login-nextjs/client";
@@ -18,7 +19,7 @@ export default function Delivered() {
 
     return (
         <>
-            <h1>Upload</h1>
+            <h1>Delivered</h1>
         </>
     );
 }
