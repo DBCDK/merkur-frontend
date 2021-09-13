@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
       <Header />
       <Sidebar />
       <div id="main">
-        <Component Component={Component} {...pageProps} />
+        <Component {...pageProps} />
       </div>
       <Footer />
     </Provider>
@@ -24,12 +24,5 @@ MyApp.propTypes = {
   Component: PropTypes.func.isRequired,
   pageProps: PropTypes.object,
 };
-
-export async function getServerSideProps() {
-  const session = await getSession();
-  return {
-    props: { session },
-  };
-}
 
 export default MyApp;
