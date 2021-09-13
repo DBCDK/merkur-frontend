@@ -1,21 +1,24 @@
 import React from "react";
+import styles from "./File.module.css";
 
 export default function File(file) {
   return (
-    <tr>
-      <td>
-        <a href="#" onClick={this.onClick}>
-          {file.metadata.name}
-        </a>
+    <tr key={file.id} className={styles.tr}>
+      <td key={"td_href_" + file.id}>
+        <a href="#">{file.metadata.name}</a>
       </td>
-      <td>{file.metadata.agency}</td>
-      <td>{formatCreationTime(file.creationTime)}</td>
-      <td>{byteSizeToHumanReadableSI(file.byteSize)}</td>
+      <td key={"td_agency_" + file.id}>{file.metadata.agency}</td>
+      <td key={"td_date_" + file.id}>
+        {formatCreationTime(file.creationTimeMillies)}
+      </td>
+      <td key={"td_size_" + file.id}>
+        {byteSizeToHumanReadableSI(file.byteSize)}
+      </td>
     </tr>
   );
 
   function formatCreationTime(millisecondsSinceEpoch) {
-    return new Date(millisecondsSinceEpoch);
+    return new Date(millisecondsSinceEpoch).toLocaleDateString();
   }
 
   function byteSizeToHumanReadableSI(bytes) {

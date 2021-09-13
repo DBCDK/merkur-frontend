@@ -4,10 +4,6 @@ import { log } from "dbc-node-logger";
 const apiKeys = JSON.parse(process.env.APIKEYS);
 
 export function authenticate(req, res) {
-  if (req.session?.user?.netpunktAgency) {
-    log.debug("Authenticating via session");
-    return req.session.agencyid;
-  }
   log.debug("Authenticating via authorization header");
 
   res.setHeader("WWW-Authenticate", 'Basic realm="DBC merkur"');

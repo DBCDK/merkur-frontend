@@ -1,34 +1,23 @@
-import BootstrapTable from "react-bootstrap-table-next";
+import File from "./File";
 
 export default function FileList({ files }) {
-  const cols = [
-    {
-      dataField: "name",
-      text: "Filnavn",
-    },
-    {
-      dataField: "agency",
-      text: "Bibl.nr",
-    },
-    {
-      dataField: "creationTime",
-      text: "Dato",
-    },
-    {
-      dataField: "byteSize",
-      text: "Størrelse",
-    },
-  ];
+  if (!files) {
+    return <p>Waiting for data</p>;
+  }
 
   return (
     <>
-      <BootstrapTable
-        keyField="name"
-        data={[]}
-        columns={cols}
-        bordered={false}
-        noDataIndication="Tabellen har ingen data at vise"
-      />
+      <table className="table">
+        <thead>
+          <tr key="tr">
+            <th key="th_filename">Filnavn</th>
+            <th key="th_agency">Bibl.nr</th>
+            <th key="th_date">Dato</th>
+            <th key="th_size">Størrelse</th>
+          </tr>
+        </thead>
+        <tbody>{files.map((file) => File(file))}</tbody>
+      </table>
     </>
   );
 }

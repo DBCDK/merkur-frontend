@@ -17,11 +17,14 @@ export function mapToFileObjectList(request, posts) {
 
 export function mapToFileObject(request, fileAttributes) {
   const file = {
+    id: fileAttributes.id,
     filename: fileAttributes.metadata.name,
     origin: convertFileOrigin(fileAttributes.metadata.origin),
     creationTimeUTC: mapToUtc(fileAttributes.creationTime),
+    creationTimeMillies: fileAttributes.creationTime,
     byteSize: fileAttributes.byteSize,
     downloadUrl: mapToFileUrl(request, fileAttributes, fileEndpoint),
+    metadata: fileAttributes.metadata,
   };
 
   if (!fileAttributes.metadata.claimed) {

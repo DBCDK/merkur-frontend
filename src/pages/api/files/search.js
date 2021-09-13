@@ -1,11 +1,11 @@
 import { log } from "dbc-node-logger";
 import { authenticate } from "@/components/api-validator";
-import { conversionsOrigin, defaultCategory } from "@/constants";
+import { adminAgency, conversionsOrigin, defaultCategory } from "@/constants";
 import { mapToFileObjectList } from "@/components/file-helper";
 import { getSession } from "next-auth/client";
 
 export default async function handler(req, res) {
-  let agencyId;
+  let agencyId = undefined;
 
   const session = await getSession({ req: req });
   if (!session) {
@@ -16,13 +16,17 @@ export default async function handler(req, res) {
 
   if (agencyId !== undefined) {
     if (req.method === "GET") {
-      log.info(agencyId + " getting conversions files");
+      log.info(agencyId + " getting files");
 
       const data = {
-        agencyId: agencyId,
         category: defaultCategory,
         origin: conversionsOrigin,
       };
+
+      if (agencyId !== adminAgency) {
+        data.agency = agencyId;
+      }
+
       const response = await fetch(`${process.env.FILESTORE_URL}/files`, {
         method: "POST",
         body: JSON.stringify(data),

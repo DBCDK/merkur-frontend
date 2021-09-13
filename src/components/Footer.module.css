@@ -1,18 +1,18 @@
 .footer {
-    background-color: black;
-    border-color: transparent;
-    bottom: 0;
-    color: white;
-    left: 0;
-    padding: 5px;
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    z-index: 10;
-    font-size: 14px;
-    height: 40px;
+  background-color: black;
+  border-color: transparent;
+  bottom: 0;
+  color: white;
+  left: 0;
+  padding: 5px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 10;
+  font-size: 14px;
+  height: 40px;
 }
 
 .footer a {
-    color: #e56312;
+  color: #e56312;
 }
