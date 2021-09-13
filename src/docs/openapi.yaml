@@ -5,7 +5,7 @@ info:
     Provides rest API services for the merkur system.
   license:
     name: GPL-3.0
-    url: 'https://github.com/DBCDK/promat-service/blob/master/LICENCE.txt'
+    url: "https://github.com/DBCDK/promat-service/blob/master/LICENCE.txt"
   version: 1.0-SNAPSHOT
 paths:
   /files:
@@ -14,20 +14,20 @@ paths:
       security:
         - basicAuth: []
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
@@ -39,20 +39,20 @@ paths:
       security:
         - basicAuth: []
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
@@ -62,22 +62,22 @@ paths:
     get:
       summary: Lists information about all conversions files available
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
@@ -96,21 +96,21 @@ paths:
             type: string
             description: File id
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/octet-stream:
               schema:
                 type: string
                 format: binary
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
@@ -122,20 +122,20 @@ paths:
       security:
         - basicAuth: []
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
@@ -145,22 +145,22 @@ paths:
     get:
       summary: Lists information about all unclaimed conversions files available
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
@@ -170,22 +170,22 @@ paths:
     get:
       summary: Lists information about all unclaimed periodic-jobs files available
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/FileList"
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
@@ -195,7 +195,7 @@ paths:
     post:
       summary: Acknowledges file retrieval for specific file
       security:
-        - basicAuth: [ ]
+        - basicAuth: []
       parameters:
         - in: path
           name: id
@@ -204,22 +204,22 @@ paths:
             type: string
             description: File id
       responses:
-        '200':
+        "200":
           description: OK
-        '401':
+        "401":
           description: Unauthorized
           content:
             plain/text:
               schema:
                 type: string
                 description: Description of what went wrong with authentication
-        '403':
+        "403":
           description: Attempt to claim file owned by another agency
           content:
             plain/text:
               schema:
                 type: string
-        '405':
+        "405":
           description: Method not allowed
           content:
             plain/text:
