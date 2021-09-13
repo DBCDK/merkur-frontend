@@ -1,20 +1,8 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import { getSession, useSession } from "next-auth/client";
-import { signIn } from "@dbcdk/login-nextjs/client";
 
 export default function Index() {
   const [session] = useSession();
-
-  const waitForSession = useCallback(async () => {
-    let s = await getSession();
-    if (!s) {
-      signIn();
-    }
-  }, [session]);
-
-  useEffect(() => {
-    waitForSession();
-  }, []);
 
   if (session) {
     return (
@@ -25,14 +13,18 @@ export default function Index() {
   } else {
     return (
       <div className="align-center">
-        <h1 data-cy="welcome-text">Du har ikke adgang til Merkur</h1>
+        <h1 data-cy="welcome-text">
+          Du har ikke adgang til Merkur. Log venligst ind.
+        </h1>
       </div>
     );
   }
 }
 
 export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
   return {
-    props: {},
+    props: { session },
   };
 }
