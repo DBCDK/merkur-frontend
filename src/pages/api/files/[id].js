@@ -1,10 +1,8 @@
-import { authenticate } from "@/components/api-validator";
 import { log } from "dbc-node-logger";
 import { adminAgency } from "@/constants";
+import { withAuthorization } from "@/components/api-validator";
 
-export default async function handler(req, res) {
-  const agencyId = authenticate(req, res);
-
+async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
     if (req.method === "GET") {
       const {
@@ -48,3 +46,5 @@ export default async function handler(req, res) {
     }
   }
 }
+
+export default withAuthorization(handler);

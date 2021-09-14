@@ -1,19 +1,9 @@
 import { log } from "dbc-node-logger";
-import { authenticate } from "@/components/api-validator";
 import { conversionsOrigin, defaultCategory } from "@/constants";
 import { mapToFileObjectList } from "@/components/file-helper";
-import { getSession } from "next-auth/client";
+import { withAuthorization } from "@/components/api-validator";
 
-export default async function handler(req, res) {
-  let agencyId;
-
-  const session = await getSession({ req: req });
-  if (!session) {
-    agencyId = authenticate(req, res);
-  } else {
-    agencyId = session.user.netpunktAgency;
-  }
-
+async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
     if (req.method === "GET") {
       log.info(agencyId + " getting conversions files");
@@ -40,3 +30,5 @@ export default async function handler(req, res) {
     }
   }
 }
+
+export default withAuthorization(handler);

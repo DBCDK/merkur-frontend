@@ -1,11 +1,9 @@
 import { log } from "dbc-node-logger";
-import { authenticate } from "@/components/api-validator";
+import { withAuthorization } from "@/components/api-validator";
 import { defaultCategory, periodicJobsOrigin } from "@/constants";
 import { mapToFileObjectList } from "@/components/file-helper";
 
-export default async function handler(req, res) {
-  const agencyId = authenticate(req, res);
-
+async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
     if (req.method === "GET") {
       log.info(agencyId + " getting periodic-jobs files");
@@ -32,3 +30,5 @@ export default async function handler(req, res) {
     }
   }
 }
+
+export default withAuthorization(handler);

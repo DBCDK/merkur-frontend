@@ -1,7 +1,23 @@
 import React from "react";
 import { log } from "dbc-node-logger";
+import { getSession } from "next-auth/client";
 
 const apiKeys = JSON.parse(process.env.APIKEYS);
+
+export function withAuthorization(callback) {
+  return async function checkAuthorization(req, res) {
+    let agencyId;
+    const session = await getSession({ req });
+
+    if (!session) {
+      agencyId = authenticate(req, res);
+    } else {
+      agencyId = session.user.netpunktAgency;
+    }
+
+    return callback(req, res, agencyId);
+  };
+}
 
 export function authenticate(req, res) {
   log.debug("Authenticating via authorization header");
