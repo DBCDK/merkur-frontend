@@ -1,51 +1,37 @@
-import FileList from "@/components/FileList";
 import { useEffect, useState } from "react";
-import FileFilter from "@/components/FileFilter";
 import { getSession } from "next-auth/client";
+import { conversionsOrigin, defaultCategory } from "@/constants";
+import { FileListPage } from "@/components/FileListPage";
 
 const ConversionPage = () => {
   const [files, setFiles] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
+  const data = {
+    category: defaultCategory,
+    origin: conversionsOrigin,
+  };
+
   useEffect(() => {
     setIsLoading(true);
-    fetch("/api/files/search")
+    fetch("/api/files/search", {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
       .then((response) => response.json())
-      .then((data) => {
+      .then((item) => {
         setIsLoading(false);
-        setFiles(data);
+        setFiles(item);
       });
   }, []);
 
-  if (isLoading || !files) {
-    return <p>Indlæser data...</p>;
-  }
-
-  const agencies = [...new Set(files.map((item) => item.metadata.agency))];
-
   return (
     <>
-      <div>
-        <h3>Konverteringsservice</h3>
-      </div>
-      <div>
-        <h6>
-          Ses filen ikke? Gå evt. til&nbsp;
-          <a
-            href="http://dbcposthus.dbc.dk/dataleverancer/index.php"
-            target="_blank"
-          >
-            Det gamle DBC-posthus
-          </a>
-        </h6>
-      </div>
-      <div>
-        <h4>Filer til afhentning</h4>
-      </div>
-      <div>
-        <FileFilter agencies={agencies} />
-      </div>
-      <div>{<FileList files={files} />}</div>
+      <FileListPage
+        title="Konverteringsservice"
+        files={files}
+        isLoading={isLoading}
+      />
     </>
   );
 };

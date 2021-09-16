@@ -1,12 +1,40 @@
-import { getSession, useSession } from "next-auth/client";
+import { useEffect, useState } from "react";
+import { getSession } from "next-auth/client";
+import { defaultCategory, periodicJobsOrigin } from "@/constants";
+import { FileListPage } from "@/components/FileListPage";
 
-export default function Delivered() {
+const PeriodicJobsPage = () => {
+  const [files, setFiles] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const data = {
+    category: defaultCategory,
+    origin: periodicJobsOrigin,
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch("/api/files/search", {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((item) => {
+        setIsLoading(false);
+        setFiles(item);
+      });
+  }, []);
+
   return (
     <>
-      <h1>Delivered</h1>
+      <FileListPage
+        title="Dataleverancer"
+        files={files}
+        isLoading={isLoading}
+      />
     </>
   );
-}
+};
 
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
@@ -24,3 +52,5 @@ export async function getServerSideProps(context) {
     props: { session },
   };
 }
+
+export default PeriodicJobsPage;
