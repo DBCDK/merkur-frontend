@@ -10,7 +10,7 @@ async function handler(req, res, agencyId) {
       log.info(agencyId + " getting unclaimed periodic-jobs files");
 
       const data = {
-        agencyId: agencyId,
+        agency: parseInt(agencyId),
         category: defaultCategory,
         origin: periodicJobsOrigin,
         claimed: false,
@@ -18,7 +18,7 @@ async function handler(req, res, agencyId) {
 
       const posts = await searchFiles(data);
 
-      return res.status(response.status).json(mapToFileObjectList(req, posts));
+      return res.status(200).json(mapToFileObjectList(req, posts));
     } else {
       return res
         .status(405)

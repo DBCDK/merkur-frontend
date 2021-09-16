@@ -11,21 +11,21 @@ const mapToUtc = (millisecondsSinceEpoch) => {
   return new Date(millisecondsSinceEpoch).toISOString();
 };
 
-export function mapToFileObjectList(request, posts) {
-  return posts.map((item) => mapToFileObject(request, item));
+export function mapToFileObjectList(req, posts) {
+  return posts.map((item) => mapToFileObject(req, item));
 }
 
-export function mapToFileObject(request, fileAttributes) {
+export function mapToFileObject(req, fileAttributes) {
   const file = {
     filename: fileAttributes.metadata.name,
     origin: convertFileOrigin(fileAttributes.metadata.origin),
     creationTimeUTC: mapToUtc(fileAttributes.creationTime),
     byteSize: fileAttributes.byteSize,
-    downloadUrl: mapToFileUrl(request, fileAttributes, fileEndpoint),
+    downloadUrl: mapToFileUrl(req, fileAttributes, fileEndpoint),
   };
   if (!fileAttributes.metadata.claimed) {
     file.claimedUrl = mapToFileUrl(
-      request,
+      req,
       fileAttributes,
       fileClaimedEndpoint
     );
@@ -33,15 +33,15 @@ export function mapToFileObject(request, fileAttributes) {
   return file;
 }
 
-export function mapToFileUrl(request, fileAttributes, path) {
+function mapToFileUrl(req, fileAttributes, path) {
   return url.format({
-    protocol: request.protocol,
-    host: request.headers.host,
+    protocol: req.protocol,
+    host: req.headers.host,
     pathname: path.replace(":id", fileAttributes.id),
   });
 }
 
-export function convertFileOrigin(origin) {
+function convertFileOrigin(origin) {
   switch (origin) {
     case conversionsOrigin:
       return "conversions";
