@@ -1,6 +1,7 @@
 import { log } from "dbc-node-logger";
 import { conversionsOrigin, defaultCategory } from "@/constants";
 import { mapToFileObjectList } from "@/components/file-helper";
+import { searchFiles } from "@/components/FileStoreConnector";
 import { withAuthorization } from "@/components/api-validator";
 
 async function handler(req, res, agencyId) {
@@ -13,14 +14,8 @@ async function handler(req, res, agencyId) {
         category: defaultCategory,
         origin: conversionsOrigin,
       };
-      const response = await fetch(`${process.env.FILESTORE_URL}/files`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const posts = await response.json();
+
+      const posts = await searchFiles(data);
 
       return res.status(response.status).json(mapToFileObjectList(req, posts));
     } else {

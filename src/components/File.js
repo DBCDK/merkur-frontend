@@ -9,7 +9,7 @@ export default function File(file) {
       </td>
       <td key={"td_agency_" + file.id}>{file.metadata.agency}</td>
       <td key={"td_date_" + file.id}>
-        {formatCreationTime(file.creationTimeMillies)}
+        {formatCreationTime(file.creationTime)}
       </td>
       <td key={"td_size_" + file.id}>
         {byteSizeToHumanReadableSI(file.byteSize)}
@@ -17,8 +17,8 @@ export default function File(file) {
     </tr>
   );
 
-  function formatCreationTime(millisecondsSinceEpoch) {
-    return new Date(millisecondsSinceEpoch).toLocaleDateString();
+  function formatCreationTime(dateString) {
+    return new Date(dateString).toLocaleDateString();
   }
 
   function byteSizeToHumanReadableSI(bytes) {

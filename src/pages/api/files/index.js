@@ -1,7 +1,8 @@
 import { log } from "dbc-node-logger";
-import { withAuthorization } from "@/components/api-validator";
 import { defaultCategory } from "@/constants";
 import { mapToFileObjectList } from "@/components/file-helper";
+import { searchFiles } from "@/components/FileStoreConnector";
+import { withAuthorization } from "@/components/api-validator";
 
 async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
@@ -9,19 +10,13 @@ async function handler(req, res, agencyId) {
       log.info(agencyId + " getting files");
 
       const data = {
-        agencyId: agencyId,
+        agency: parseInt(agencyId),
         category: defaultCategory,
       };
-      const response = await fetch(`${process.env.FILESTORE_URL}/files`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const posts = await response.json();
 
-      return res.status(response.status).json(mapToFileObjectList(req, posts));
+      const posts = await searchFiles(data);
+
+      return res.status(200).json(mapToFileObjectList(req, posts));
     } else {
       return res
         .status(405)

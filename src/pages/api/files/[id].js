@@ -1,6 +1,7 @@
 import { log } from "dbc-node-logger";
 import { adminAgency } from "@/constants";
 import { withAuthorization } from "@/components/api-validator";
+import { getFile, getFileAttributes } from "@/components/FileStoreConnector";
 
 async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
@@ -10,16 +11,7 @@ async function handler(req, res, agencyId) {
       } = req;
       log.info(agencyId + " getting file with id " + fileId);
 
-      const attributeResponse = await fetch(
-        `${process.env.FILESTORE_URL}/files/${fileId}/attributes`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const fileAttributes = await attributeResponse.json();
+      const fileAttributes = await getFileAttributes(fileId);
       const fileAgencyId = fileAttributes.metadata.agency;
 
       if (adminAgency !== agencyId && fileAgencyId !== agencyId) {
@@ -28,17 +20,9 @@ async function handler(req, res, agencyId) {
           .send("Attempt to download file owned by another agency");
       }
 
-      const response = await fetch(
-        `${process.env.FILESTORE_URL}/files/${fileId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const content = await getFile(fileId);
 
-      return res.status(response.status).send(response.body);
+      return res.status(200).send(content);
     } else {
       return res
         .status(405)

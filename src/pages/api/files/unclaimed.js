@@ -2,6 +2,7 @@ import { defaultCategory } from "@/constants";
 import { log } from "dbc-node-logger";
 import { withAuthorization } from "@/components/api-validator";
 import { mapToFileObjectList } from "@/components/file-helper";
+import { searchFiles } from "@/components/FileStoreConnector";
 
 async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
@@ -9,20 +10,14 @@ async function handler(req, res, agencyId) {
       log.info(agencyId + " getting unclaimed files");
 
       const data = {
-        agencyId: agencyId,
+        agency: parseInt(agencyId),
         category: defaultCategory,
         claimed: false,
       };
-      const response = await fetch(`${process.env.FILESTORE_URL}/files`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const posts = await response.json();
 
-      return res.status(response.status).json(mapToFileObjectList(req, posts));
+      const posts = await searchFiles(data);
+
+      return res.status(200).json(mapToFileObjectList(req, posts));
     } else {
       return res
         .status(405)

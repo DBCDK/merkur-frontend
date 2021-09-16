@@ -1,6 +1,7 @@
 import { withAuthorization } from "@/components/api-validator";
 import { log } from "dbc-node-logger";
 import { adminAgency } from "@/constants";
+import { getFile, getFileAttributes } from "@/components/FileStoreConnector";
 
 async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
@@ -10,16 +11,7 @@ async function handler(req, res, agencyId) {
       } = req;
       log.info(agencyId + " claiming file with id " + fileId);
 
-      const attributeResponse = await fetch(
-        `${process.env.FILESTORE_URL}/files/${fileId}/attributes`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const fileAttributes = await attributeResponse.json();
+      const fileAttributes = await getFileAttributes(fileId);
       const metaData = fileAttributes.metadata;
       const fileAgencyId = metaData.agency;
 
@@ -29,18 +21,9 @@ async function handler(req, res, agencyId) {
 
       metaData.claimed = true;
 
-      const response = await fetch(
-        `${process.env.FILESTORE_URL}/files/${fileId}`,
-        {
-          method: "POST",
-          body: JSON.stringify(metaData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const content = await getFile(fileId);
 
-      return res.status(200).send(response.body);
+      return res.status(200).send(content);
     } else {
       return res
         .status(405)
