@@ -24,11 +24,7 @@ export function mapToFileObject(req, fileAttributes) {
     downloadUrl: mapToFileUrl(req, fileAttributes, fileEndpoint),
   };
   if (!fileAttributes.metadata.claimed) {
-    file.claimedUrl = mapToFileUrl(
-      req,
-      fileAttributes,
-      fileClaimedEndpoint
-    );
+    file.claimedUrl = mapToFileUrl(req, fileAttributes, fileClaimedEndpoint);
   }
   return file;
 }
