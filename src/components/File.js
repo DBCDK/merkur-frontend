@@ -5,7 +5,9 @@ export default function File(file) {
   return (
     <tr key={file.id} className={styles.tr}>
       <td key={"td_href_" + file.id}>
-        <a href="#">{file.metadata.name}</a>
+        <a href={"/api/files/" + file.id} download={file.metadata.name}>
+          {file.metadata.name}
+        </a>
       </td>
       <td key={"td_agency_" + file.id}>{file.metadata.agency}</td>
       <td key={"td_date_" + file.id}>
