@@ -1,11 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import styles from "@/components/Sidebar.module.css";
-import { useRouter } from "next/router";
+import { adminAgency } from "@/constants";
+import PropTypes from "prop-types";
 
-export function Sidebar() {
-  const router = useRouter();
-
+export function Sidebar({ loginAgency }) {
   return (
     <div className={styles.sidebar}>
       <nav id="sidebar">
@@ -20,11 +19,13 @@ export function Sidebar() {
               <a>Dataleverancer</a>
             </Link>
           </li>
-          <li>
-            <Link href="/upload">
-              <a>Upload af fil</a>
-            </Link>
-          </li>
+          {loginAgency === adminAgency && (
+            <li>
+              <Link href="/upload">
+                <a>Upload af fil</a>
+              </Link>
+            </li>
+          )}
           <li>
             <a
               href="http://dbcposthus.dbc.dk/dataleverancer/index.php"
@@ -38,3 +39,7 @@ export function Sidebar() {
     </div>
   );
 }
+
+Sidebar.propTypes = {
+  loginAgency: PropTypes.string.isRequired,
+};

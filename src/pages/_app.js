@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/styles.css";
-import { Provider, getSession } from "next-auth/client";
+import { Provider } from "next-auth/client";
 import Footer from "@/components/Footer";
 import { Sidebar } from "@/components/Sidebar";
 import PropTypes from "prop-types";
@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider session={pageProps.session}>
       <Header />
-      <Sidebar />
+      <Sidebar loginAgency={pageProps.session.user.netpunktAgency} />
       <div id="main">
         <Component {...pageProps} />
       </div>
