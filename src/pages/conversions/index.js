@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/client";
 import { conversionsOrigin, defaultCategory } from "@/constants";
 import { FileListPage } from "@/components/FileListPage";
 
 const ConversionPage = () => {
+  const [session] = useSession();
   const [files, setFiles] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,6 +32,7 @@ const ConversionPage = () => {
         title="Konverteringsservice"
         files={files}
         isLoading={isLoading}
+        loginAgency={session.user.netpunktAgency}
       />
     </>
   );

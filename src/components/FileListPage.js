@@ -1,13 +1,36 @@
 import FileList from "@/components/FileList";
 import FileFilter from "@/components/FileFilter";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { adminAgency } from "@/constants";
 
-export function FileListPage({ title, files, isLoading }) {
+export function FileListPage({ title, files, isLoading, loginAgency }) {
   if (isLoading || !files) {
     return <p>Indlæser data...</p>;
   }
   // Extra set of unique agencies from the files
   const agencies = [...new Set(files.map((item) => item.metadata.agency))];
+  const filteredAgencies = () => {
+    if (loginAgency === adminAgency) {
+      return agencies;
+    } else {
+      return [loginAgency];
+    }
+  };
+  const [selectedAgency, setSelectedAgency] = useState(loginAgency);
+  const [filteredFiles, setFilteredFiles] = useState([]);
+
+  useEffect(() => {
+    // Admin agency - show everything
+    if (selectedAgency === adminAgency) {
+      setFilteredFiles(files);
+    } else {
+      const selectedAgencyAsInt = parseInt(selectedAgency);
+      setFilteredFiles(
+        files.filter((item) => item.metadata.agency === selectedAgencyAsInt)
+      );
+    }
+  }, [selectedAgency]);
 
   return (
     <>
@@ -29,9 +52,13 @@ export function FileListPage({ title, files, isLoading }) {
         <h4>Filer til afhentning</h4>
       </div>
       <div>
-        <FileFilter agencies={agencies} />
+        <FileFilter
+          agencies={filteredAgencies()}
+          setSelectedAgency={setSelectedAgency}
+          loginAgency={loginAgency}
+        />
       </div>
-      <div>{<FileList files={files} />}</div>
+      <div>{<FileList files={filteredFiles} />}</div>
     </>
   );
 }
@@ -40,4 +67,5 @@ FileListPage.propTypes = {
   title: PropTypes.string.isRequired,
   files: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  loginAgency: PropTypes.string.isRequired,
 };

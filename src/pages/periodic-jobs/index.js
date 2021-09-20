@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/client";
 import { defaultCategory, periodicJobsOrigin } from "@/constants";
 import { FileListPage } from "@/components/FileListPage";
 
 const PeriodicJobsPage = () => {
+  const [session] = useSession();
   const [files, setFiles] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,6 +32,7 @@ const PeriodicJobsPage = () => {
         title="Dataleverancer"
         files={files}
         isLoading={isLoading}
+        loginAgency={session.user.netpunktAgency}
       />
     </>
   );
