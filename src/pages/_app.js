@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider session={pageProps.session}>
       <Header />
-      <Sidebar loginAgency={pageProps.session.user.netpunktAgency} />
+      <Sidebar loginAgency={pageProps?.session?.user?.netpunktAgency} />
       <div id="main">
         <Component {...pageProps} />
       </div>

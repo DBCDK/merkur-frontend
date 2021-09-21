@@ -2,32 +2,34 @@ import React from "react";
 import { useSession } from "next-auth/client";
 import { signIn, signOut } from "@dbcdk/login-nextjs/client";
 import styles from "@/components/Header.module.css";
+import { Button, Navbar } from "react-bootstrap";
 
 export const Header = () => {
   const [session] = useSession();
+
+  // This could probably be done inline as well, however it causes rendering issues with next-auth login
+  const onSignInOut = () => {
+    session ? signOut() : signIn();
+  };
+
   return (
-    <div className={styles.header}>
-      <header>
-        <div>
-          {!session && (
-            <>
-              <h4>
-                DBCs Posthus
-                <a onClick={() => signIn()}>Log ind</a>
-              </h4>
-            </>
-          )}
-          {session && (
-            <>
-              <h4>
-                DBCs Posthus - {session.user.netpunktAgency}
-                <a onClick={() => signOut()}>Log ud</a>
-              </h4>
-            </>
-          )}
-        </div>
-      </header>
-    </div>
+    <Navbar bsPrefix={styles.container} sticky={"top"} bg={"black"}>
+      <Navbar.Brand>
+        <img
+          className={styles.logo}
+          width="90"
+          src="/logo.png"
+          alt="DBCs Posthus"
+        />
+        {/*{brandName()}*/}
+          <span className={styles.greeting}>DBCs Posthus {session && " - " + session.user.netpunktAgency}</span>
+      </Navbar.Brand>
+      <Navbar.Text className={styles.button} >
+          <div className={styles.navArea}>
+        <Button data-cy="navigation-login-button" onClick={onSignInOut}>{session ? "Log ud" : "Log ind"}</Button>
+          </div>
+      </Navbar.Text>
+    </Navbar>
   );
 };
 
