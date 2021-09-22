@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { adminAgency } from "@/constants";
 
-export function FileListPage({ title, files, isLoading, loginAgency }) {
+export default function FileListPage({ title, files, isLoading, loginAgency }) {
   if (isLoading || !files) {
     return <p>Indlæser data...</p>;
   }

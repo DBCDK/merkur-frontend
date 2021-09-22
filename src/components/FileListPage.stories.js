@@ -1,4 +1,4 @@
-import { FileListPage } from "./FileListPage";
+import FileListPage from "@/components/FileListPage";
 
 export default {
   title: "Interne komponenter/FileListPage",
