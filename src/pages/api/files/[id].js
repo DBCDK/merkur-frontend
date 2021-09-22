@@ -14,8 +14,8 @@ async function handler(req, res, agencyId) {
       const fileAttributes = await getFileAttributes(fileId);
       const fileAgencyId = fileAttributes.metadata.agency;
 
-      if (adminAgency !== agencyId && fileAgencyId !== agencyId) {
-        res
+      if (adminAgency !== agencyId && fileAgencyId !== parseInt(agencyId)) {
+        return res
           .status(403)
           .send("Attempt to download file owned by another agency");
       }
