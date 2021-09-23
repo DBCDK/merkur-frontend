@@ -25,7 +25,7 @@ export default function FileListPage({ title, files, isLoading, loginAgency }) {
     if (selectedAgency === adminAgency) {
       setFilteredFiles(files);
     } else {
-      const selectedAgencyAsInt = parseInt(selectedAgency);
+      const selectedAgencyAsInt = parseInt(selectedAgency, 10);
       setFilteredFiles(
         files.filter((item) => item.metadata.agency === selectedAgencyAsInt)
       );

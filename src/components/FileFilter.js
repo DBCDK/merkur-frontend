@@ -14,7 +14,7 @@ export default function FileFilter({
       <select
         name="agency_select"
         id="agency_select"
-        onChange={(e) => parseInt(setSelectedAgency(e?.target?.value))}
+        onChange={(e) => parseInt(setSelectedAgency(e?.target?.value), 10)}
       >
         {loginAgency === adminAgency && (
           <option value="010100" key="010100">

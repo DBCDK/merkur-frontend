@@ -10,7 +10,7 @@ async function handler(req, res, agencyId) {
       log.info(agencyId + " getting unclaimed files");
 
       const data = {
-        agency: parseInt(agencyId),
+        agency: parseInt(agencyId, 10),
         category: defaultCategory,
         claimed: false,
       };

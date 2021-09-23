@@ -13,7 +13,7 @@ async function handler(req, res, agencyId) {
       if (agencyId === adminAgency) {
         data.category = defaultCategory;
       } else {
-        data.agency = parseInt(agencyId);
+        data.agency = parseInt(agencyId, 10);
       }
 
       const posts = await searchFiles(data);

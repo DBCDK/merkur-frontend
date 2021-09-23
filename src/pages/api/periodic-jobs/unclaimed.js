@@ -10,7 +10,7 @@ async function handler(req, res, agencyId) {
       log.info(agencyId + " getting unclaimed periodic-jobs files");
 
       const data = {
-        agency: parseInt(agencyId),
+        agency: parseInt(agencyId, 10),
         category: defaultCategory,
         origin: periodicJobsOrigin,
         claimed: false,
