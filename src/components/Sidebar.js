@@ -4,7 +4,7 @@ import styles from "@/components/Sidebar.module.css";
 import { adminAgency } from "@/constants";
 import PropTypes from "prop-types";
 
-export function Sidebar({ loginAgency }) {
+export const Sidebar = ({ loginAgency }) => {
   return (
     <div className={styles.sidebar}>
       <nav id="sidebar">

@@ -1,6 +1,6 @@
-import File from "./File";
+import {File} from "./File";
 
-export default function FileList({ files }) {
+export const FileList = ({ files }) => {
   if (!files) {
     return <p>Waiting for data</p>;
   }

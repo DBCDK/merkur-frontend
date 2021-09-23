@@ -1,10 +1,10 @@
-import FileList from "@/components/FileList";
-import FileFilter from "@/components/FileFilter";
+import {FileList} from "@/components/FileList";
+import {FileFilter} from "@/components/FileFilter";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { adminAgency } from "@/constants";
 
-export default function FileListPage({ title, files, isLoading, loginAgency }) {
+export const FileListPage = ({ title, files, isLoading, loginAgency }) => {
   if (isLoading || !files) {
     return <p>Indlæser data...</p>;
   }
