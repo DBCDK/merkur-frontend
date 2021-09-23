@@ -5,7 +5,7 @@ import { FileList } from "@/components/FileList";
 
 const ConversionPage = () => {
   const [session] = useSession();
-  const [files, setFiles] = useState();
+  const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const data = {

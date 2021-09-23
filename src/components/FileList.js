@@ -30,7 +30,7 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
         files.filter((item) => item.metadata.agency === selectedAgencyAsInt)
       );
     }
-  }, [selectedAgency]);
+  }, [selectedAgency, files]);
 
   return (
     <>

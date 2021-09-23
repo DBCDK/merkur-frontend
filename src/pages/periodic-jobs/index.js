@@ -5,7 +5,7 @@ import { FileList } from "@/components/FileList";
 
 const PeriodicJobsPage = () => {
   const [session] = useSession();
-  const [files, setFiles] = useState();
+  const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const data = {
