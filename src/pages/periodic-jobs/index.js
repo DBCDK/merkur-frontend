@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSession, useSession } from "next-auth/client";
 import { defaultCategory, periodicJobsOrigin } from "@/constants";
-import {FileListPage} from "@/components/FileListPage";
+import {FileList} from "@/components/FileList";
 
 const PeriodicJobsPage = () => {
   const [session] = useSession();
@@ -28,7 +28,7 @@ const PeriodicJobsPage = () => {
 
   return (
     <>
-      <FileListPage
+      <FileList
         title="Dataleverancer"
         files={files}
         isLoading={isLoading}

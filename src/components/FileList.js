@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { adminAgency } from "@/constants";
 
-export const FileListPage = ({ title, files, isLoading, loginAgency }) => {
+export const FileList = ({ title, files, isLoading, loginAgency }) => {
   if (isLoading || !files) {
     return <p>Indlæser data...</p>;
   }
@@ -63,7 +63,7 @@ export const FileListPage = ({ title, files, isLoading, loginAgency }) => {
   );
 }
 
-FileListPage.propTypes = {
+FileList.propTypes = {
   title: PropTypes.string.isRequired,
   files: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
