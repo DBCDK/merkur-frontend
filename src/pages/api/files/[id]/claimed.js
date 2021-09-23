@@ -1,7 +1,10 @@
 import { withAuthorization } from "@/components/api-validator";
 import { log } from "dbc-node-logger";
 import { adminAgency } from "@/constants";
-import { getFile, getFileAttributes } from "@/components/FileStoreConnector";
+import {
+  addMetadata,
+  getFileAttributes,
+} from "@/components/FileStoreConnector";
 
 async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
@@ -15,15 +18,17 @@ async function handler(req, res, agencyId) {
       const metaData = fileAttributes.metadata;
       const fileAgencyId = metaData.agency;
 
-      if (adminAgency !== agencyId && fileAgencyId !== agencyId) {
-        res.status(403).send("Attempt to claim file owned by another agency");
+      if (adminAgency !== agencyId && fileAgencyId.toString() !== agencyId) {
+        return res
+          .status(403)
+          .send("Attempt to claim file owned by another agency");
       }
 
       metaData.claimed = true;
 
-      const content = await getFile(fileId);
+      await addMetadata(fileId, metaData);
 
-      return res.status(200).send(content);
+      return res.status(200).end(); //End without any body
     } else {
       return res
         .status(405)

@@ -40,17 +40,15 @@ export async function getFileAttributes(fileId) {
 export async function addMetadata(fileId, data) {
   let url = fileId;
   if (!fileId.startsWith(FILESTORE_URL)) {
-    url = `${FILESTORE_URL}/${fileId}`;
+    url = `${FILESTORE_URL}/files/${fileId}`;
   }
-  const response = await fetch(url, {
+  return await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-  return response.json();
 }
 
 export async function searchFiles(data) {
