@@ -1,6 +1,6 @@
 import {File} from "./File";
 
-export const FileList = ({ files }) => {
+export const FileTable = ({ files }) => {
   if (!files) {
     return <p>Waiting for data</p>;
   }

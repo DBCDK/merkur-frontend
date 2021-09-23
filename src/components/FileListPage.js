@@ -1,4 +1,4 @@
-import {FileList} from "@/components/FileList";
+import {FileTable} from "@/components/FileTable";
 import {FileFilter} from "@/components/FileFilter";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
@@ -58,7 +58,7 @@ export const FileListPage = ({ title, files, isLoading, loginAgency }) => {
           loginAgency={loginAgency}
         />
       </div>
-      <div>{<FileList files={filteredFiles} />}</div>
+      <div>{<FileTable files={filteredFiles} />}</div>
     </>
   );
 }
