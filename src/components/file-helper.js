@@ -31,10 +31,8 @@ export function mapToFileObject(req, fileAttributes) {
 
 function mapToFileUrl(req, fileAttributes, path) {
   return url.format({
-//    protocol: req.protocol,
-    protocol: 'http',
-//    host: req.headers.host,
-    host: 'merkur-service.metascrum-staging.svc.cloud.dbc.dk',
+    protocol: req.protocol,
+    host: req.headers.host,
     pathname: path.replace(":id", fileAttributes.id),
   });
 }
