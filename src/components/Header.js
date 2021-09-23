@@ -22,12 +22,16 @@ export const Header = () => {
           alt="DBCs Posthus"
         />
         {/*{brandName()}*/}
-          <span className={styles.greeting}>DBCs Posthus {session && " - " + session.user.netpunktAgency}</span>
+        <span className={styles.greeting}>
+          DBCs Posthus {session && " - " + session.user.netpunktAgency}
+        </span>
       </Navbar.Brand>
-      <Navbar.Text className={styles.button} >
-          <div className={styles.navArea}>
-        <Button data-cy="navigation-login-button" onClick={onSignInOut}>{session ? "Log ud" : "Log ind"}</Button>
-          </div>
+      <Navbar.Text className={styles.button}>
+        <div className={styles.navArea}>
+          <Button data-cy="navigation-login-button" onClick={onSignInOut}>
+            {session ? "Log ud" : "Log ind"}
+          </Button>
+        </div>
       </Navbar.Text>
     </Navbar>
   );

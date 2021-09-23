@@ -1,5 +1,5 @@
-import {FileTable} from "@/components/FileTable";
-import {FileFilter} from "@/components/FileFilter";
+import { FileTable } from "@/components/FileTable";
+import { FileFilter } from "@/components/FileFilter";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { adminAgency } from "@/constants";
@@ -61,7 +61,7 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
       <div>{<FileTable files={filteredFiles} />}</div>
     </>
   );
-}
+};
 
 FileList.propTypes = {
   title: PropTypes.string.isRequired,

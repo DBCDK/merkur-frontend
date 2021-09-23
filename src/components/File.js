@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./File.module.css";
 
-export const File = (file) =>{
+export const File = (file) => {
   return (
     <tr key={file.id} className={styles.tr}>
       <td key={"td_href_" + file.id}>
@@ -32,4 +32,4 @@ export const File = (file) =>{
       "B"
     );
   }
-}
+};

@@ -1,4 +1,4 @@
-import {File} from "./File";
+import { File } from "./File";
 
 export const FileTable = ({ files }) => {
   if (!files) {
@@ -20,4 +20,4 @@ export const FileTable = ({ files }) => {
       </table>
     </>
   );
-}
+};

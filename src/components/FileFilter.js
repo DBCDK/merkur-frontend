@@ -1,11 +1,7 @@
 import PropTypes from "prop-types";
 import { adminAgency } from "@/constants";
 
-export const FileFilter = ({
-  agencies,
-  setSelectedAgency,
-  loginAgency,
-}) => {
+export const FileFilter = ({ agencies, setSelectedAgency, loginAgency }) => {
   // Removed undefined value - otherwise a blank option will be shown
   const filtered = agencies.filter((x) => x !== undefined);
 
@@ -29,7 +25,7 @@ export const FileFilter = ({
       </select>
     </div>
   );
-}
+};
 
 FileFilter.propTypes = {
   agencies: PropTypes.array.isRequired,

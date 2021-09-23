@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSession, useSession } from "next-auth/client";
 import { defaultCategory, periodicJobsOrigin } from "@/constants";
-import {FileList} from "@/components/FileList";
+import { FileList } from "@/components/FileList";
 
 const PeriodicJobsPage = () => {
   const [session] = useSession();

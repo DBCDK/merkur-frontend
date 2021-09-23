@@ -38,7 +38,7 @@ export const Sidebar = ({ loginAgency }) => {
       </nav>
     </div>
   );
-}
+};
 
 Sidebar.propTypes = {
   loginAgency: PropTypes.string.isRequired,
