@@ -1,12 +1,20 @@
 import { getSession } from "next-auth/client";
+import { UploadForm } from "@/components/UploadForm";
 
-export default function Delivered() {
+const UploadPage = () => {
+
+  function onUpload(file, metadata) {
+    // TODO Implement
+    console.log(JSON.stringify(metadata));
+    console.log(file)
+  }
+
   return (
     <>
-      <h1>Upload</h1>
+      <UploadForm onUpload={onUpload}/>
     </>
   );
-}
+};
 
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
@@ -24,3 +32,5 @@ export async function getServerSideProps(context) {
     props: { session },
   };
 }
+
+export default UploadPage;
