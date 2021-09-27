@@ -4,7 +4,6 @@ import { getSession } from "next-auth/client";
 
 const apiKeys = JSON.parse(process.env.APIKEYS);
 
-
 export function withSession(callback) {
   return async function checkSession(req, res) {
     const session = await getSession({ req });
@@ -12,10 +11,12 @@ export function withSession(callback) {
     if (session) {
       callback(req, res, session.user.netpunktAgency);
     } else {
-      res.status(403).send("Authentication with Apikey is forbidden for this endpoint");
+      res
+        .status(403)
+        .send("Authentication with Apikey is forbidden for this endpoint");
       return undefined;
     }
-  }
+  };
 }
 
 export function withAuthorization(callback) {
