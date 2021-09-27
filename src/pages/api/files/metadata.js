@@ -1,5 +1,5 @@
 import { log } from "dbc-node-logger";
-import { withAuthorization } from "@/components/api-validator";
+import { withSession } from "@/components/api-validator";
 import { addMetadata } from "@/components/FileStoreConnector";
 
 async function handler(req, res, agencyId) {
@@ -22,4 +22,4 @@ async function handler(req, res, agencyId) {
   }
 }
 
-export default withAuthorization(handler);
+export default withSession(handler);

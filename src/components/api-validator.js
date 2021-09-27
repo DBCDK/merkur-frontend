@@ -4,6 +4,20 @@ import { getSession } from "next-auth/client";
 
 const apiKeys = JSON.parse(process.env.APIKEYS);
 
+
+export function withSession(callback) {
+  return async function checkSession(req, res) {
+    const session = await getSession({ req });
+
+    if (session) {
+      callback(req, res, session.user.netpunktAgency);
+    } else {
+      res.status(403).send("Authentication with Apikey is forbidden for this endpoint");
+      return undefined;
+    }
+  }
+}
+
 export function withAuthorization(callback) {
   return async function checkAuthorization(req, res) {
     let agencyId;
@@ -19,7 +33,7 @@ export function withAuthorization(callback) {
   };
 }
 
-export function authenticate(req, res) {
+function authenticate(req, res) {
   log.debug("Authenticating via authorization header");
 
   res.setHeader("WWW-Authenticate", 'Basic realm="DBC merkur"');
