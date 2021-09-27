@@ -5,7 +5,7 @@ info:
     Provides rest API services for the merkur system.
   license:
     name: GPL-3.0
-    url: "https://github.com/DBCDK/promat-service/blob/master/LICENCE.txt"
+    url: "https://github.com/DBCDK/merkur-frontend/blob/main/LICENCE"
   version: 1.0-SNAPSHOT
 paths:
   /files:
