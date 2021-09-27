@@ -1,17 +1,37 @@
 import { getSession } from "next-auth/client";
 import { UploadForm } from "@/components/UploadForm";
+import { readFile } from "@/components/file-helper";
 
 const UploadPage = () => {
+  async function onUpload(file, metadata) {
+    const fileContent = await readFile(file);
 
-  function onUpload(file, metadata) {
-    // TODO Implement
-    console.log(JSON.stringify(metadata));
-    console.log(file)
+    const uploadResponse = await fetch("/api/files/add", {
+      method: "POST",
+      body: fileContent,
+      headers: {
+        "Content-Type": "application/octet-stream",
+      },
+    });
+    const body = await uploadResponse.json();
+    const fileLocation = body.location;
+
+    const data = {
+      fileId: fileLocation,
+      metadata: metadata,
+    };
+    const metadataResponse = await fetch("/api/files/metadata", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
   }
 
   return (
     <>
-      <UploadForm onUpload={onUpload}/>
+      <UploadForm onUpload={onUpload} />
     </>
   );
 };

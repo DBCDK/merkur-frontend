@@ -5,7 +5,7 @@ const FILESTORE_URL = process.env.FILESTORE_URL || "filestore-url-not-set";
 export async function addFile(data) {
   return fetch(`${FILESTORE_URL}/files`, {
     method: "POST",
-    body: JSON.stringify(data),
+    body: data,
     headers: {
       "Content-Type": "application/octet-stream",
     },
@@ -39,10 +39,10 @@ export async function getFileAttributes(fileId) {
 
 export async function addMetadata(fileId, data) {
   let url = fileId;
-  if (!fileId.startsWith(FILESTORE_URL)) {
+  if (!fileId.toString().startsWith(FILESTORE_URL)) {
     url = `${FILESTORE_URL}/files/${fileId}`;
   }
-  return await fetch(url, {
+  return fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {

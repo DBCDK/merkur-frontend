@@ -41,7 +41,7 @@ export const UploadForm = ({ onUpload }) => {
 
     const metadata = {
       name: name,
-      agency: agency,
+      agency: parseInt(agency),
       origin: form.origin.value,
       category: defaultCategory,
     };
@@ -86,7 +86,7 @@ export const UploadForm = ({ onUpload }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="input_agencysdfsdf">Bibl.nr.:</label>
+          <label htmlFor="input_agency">Bibl.nr.:</label>
           <input
             className="form-control"
             id="input_agency"
