@@ -1,9 +1,15 @@
 import { getSession } from "next-auth/client";
 import { UploadForm } from "@/components/UploadForm";
 import { readFile } from "@/components/file-helper";
+import { useState } from "react";
+import { BusySpinner } from "@/components/BusySpinner";
 
 const UploadPage = () => {
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadComplete, setUploadComplete] = useState(false);
+
   async function onUpload(file, metadata) {
+    setIsUploading(true);
     const fileContent = await readFile(file);
 
     const uploadResponse = await fetch("/api/files/add", {
@@ -27,12 +33,17 @@ const UploadPage = () => {
       },
       body: JSON.stringify(data),
     });
+
+    setIsUploading(false);
+    setUploadComplete(true);
   }
 
   return (
-    <>
+    <div>
       <UploadForm onUpload={onUpload} />
-    </>
+      {isUploading && <BusySpinner label="Filoverførsel igang..." />}
+      {uploadComplete && <div>Filoverførsel færdig</div>}
+    </div>
   );
 };
 
