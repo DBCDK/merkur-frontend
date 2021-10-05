@@ -1,10 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import styles from "@/components/Sidebar.module.css";
-import { adminAgency } from "@/constants";
-import PropTypes from "prop-types";
 
-export const Sidebar = ({ loginAgency }) => {
+export const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <nav id="sidebar">
@@ -19,13 +17,14 @@ export const Sidebar = ({ loginAgency }) => {
               <a>Dataleverancer</a>
             </Link>
           </li>
-          {loginAgency === adminAgency && (
-            <li>
-              <Link href="/upload">
-                <a>Upload af fil</a>
-              </Link>
-            </li>
-          )}
+          {/* TODO MS-3593 Merkur v2: Opføgning på fjernelse af upload funktionalitet */}
+          {/*{loginAgency === adminAgency && (*/}
+          {/*  <li>*/}
+          {/*    <Link href="/upload">*/}
+          {/*      <a>Upload af fil</a>*/}
+          {/*    </Link>*/}
+          {/*  </li>*/}
+          {/*)}*/}
           <li>
             <a
               href="http://dbcposthus.dbc.dk/dataleverancer/index.php"
@@ -38,8 +37,4 @@ export const Sidebar = ({ loginAgency }) => {
       </nav>
     </div>
   );
-};
-
-Sidebar.propTypes = {
-  loginAgency: PropTypes.string.isRequired,
 };

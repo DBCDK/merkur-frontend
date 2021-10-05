@@ -1,8 +1,14 @@
 import { log } from "dbc-node-logger";
 import { withSession } from "@/components/api-validator";
 import { addFile } from "@/components/FileStoreConnector";
-
+// TODO MS-3593 Merkur v2: Opføgning på fjernelse af upload funktionalitet
 async function handler(req, res, agencyId) {
+  log.warn("Deprecated endpoint hit: /api/files/add");
+
+  return res
+    .status(501)
+    .json({ message: "This endpoint is no longer supported" });
+
   if (agencyId !== undefined) {
     if (req.method === "POST") {
       log.info(agencyId + " uploading file");

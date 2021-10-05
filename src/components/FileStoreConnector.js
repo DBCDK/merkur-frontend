@@ -2,6 +2,7 @@ import React from "react";
 
 const FILESTORE_URL = process.env.FILESTORE_URL || "filestore-url-not-set";
 
+// TODO MS-3593 Merkur v2: Opføgning på fjernelse af upload funktionalitet
 export async function addFile(data) {
   return fetch(`${FILESTORE_URL}/files`, {
     method: "POST",
