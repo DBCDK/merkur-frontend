@@ -31,8 +31,7 @@ export function mapToFileObject(req, fileAttributes) {
 
 function mapToFileUrl(req, fileAttributes, path) {
   return url.format({
-    protocol: req.protocol,
-    host: req.headers.host,
+    host: process.env.NEXTAUTH_URL,
     pathname: path.replace(":id", fileAttributes.id),
   });
 }
