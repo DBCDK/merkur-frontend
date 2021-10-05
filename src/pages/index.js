@@ -1,24 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getSession, useSession } from "next-auth/client";
+import { signIn } from "@dbcdk/login-nextjs/client";
+import { useRouter } from "next/router";
 
 export default function Index() {
   const [session] = useSession();
+  const router = useRouter();
 
-  if (session) {
-    return (
-      <div className="align-center">
-        <h1 data-cy="welcome-text">Velkommen til Merkur</h1>
-      </div>
-    );
-  } else {
-    return (
-      <div className="align-center">
-        <h1 data-cy="welcome-text">
-          Du har ikke adgang til Merkur. Log venligst ind.
-        </h1>
-      </div>
-    );
-  }
+  useEffect(async () => {
+    if (!session) {
+      signIn();
+    } else {
+      router.push("/conversions");
+    }
+  }, []);
+
+  return <div/>;
 }
 
 export async function getServerSideProps(context) {
