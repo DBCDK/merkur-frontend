@@ -34,6 +34,8 @@ async function handler(req, res, agencyId) {
         return res.status(response.status).send(response.statusText);
       }
     } else {
+      log.info(`/api/conversions called with unsupported method: ${req.method}`);
+
       return res
         .status(405)
         .json({ message: "The request does not support method " + req.method });
