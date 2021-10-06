@@ -15,7 +15,7 @@ export default function Index() {
     }
   }, []);
 
-  return <div/>;
+  return <div />;
 }
 
 export async function getServerSideProps(context) {

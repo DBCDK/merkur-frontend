@@ -19,13 +19,13 @@ const ConversionPage = () => {
       method: "POST",
       body: JSON.stringify(data),
     })
-      .then(async response => {
+      .then(async (response) => {
         if (!response.ok) {
           const text = await response.text();
-          alert(text)
+          alert(text);
           throw response;
         }
-        return response.json()
+        return response.json();
       })
       .then((item) => {
         setIsLoading(false);

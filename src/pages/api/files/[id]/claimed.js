@@ -14,7 +14,7 @@ async function handler(req, res, agencyId) {
       } = req;
       log.info(agencyId + " claiming file with id " + fileId);
 
-      const fileAttributesResponse= await getFileAttributes(fileId);
+      const fileAttributesResponse = await getFileAttributes(fileId);
 
       if (fileAttributesResponse.status !== 200) {
         log.error(
@@ -23,7 +23,9 @@ async function handler(req, res, agencyId) {
           } from /api/files/${fileId}/attributes with message '${await fileAttributesResponse.text()}'`
         );
 
-        return res.status(fileAttributesResponse.status).send(fileAttributesResponse.statusText);
+        return res
+          .status(fileAttributesResponse.status)
+          .send(fileAttributesResponse.statusText);
       }
 
       const fileAttributes = await fileAttributesResponse.json();
@@ -42,12 +44,14 @@ async function handler(req, res, agencyId) {
 
       if (addMetadataResponse.status !== 200) {
         log.error(
-            `Status code ${
-                addMetadataResponse.status
-            } from /api/files/${fileId}/metadata with message '${await addMetadataResponse.text()}'`
+          `Status code ${
+            addMetadataResponse.status
+          } from /api/files/${fileId}/metadata with message '${await addMetadataResponse.text()}'`
         );
 
-        return res.status(addMetadataResponse.status).send(addMetadataResponse.statusText);
+        return res
+          .status(addMetadataResponse.status)
+          .send(addMetadataResponse.statusText);
       }
 
       return res.status(200).end(); //End without any body

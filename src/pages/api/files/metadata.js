@@ -6,8 +6,8 @@ async function handler(req, res, agencyId) {
   log.warn("Deprecated endpoint hit: /api/files/metadata");
 
   return res
-      .status(501)
-      .json({ message: "This endpoint is no longer supported" });
+    .status(501)
+    .json({ message: "This endpoint is no longer supported" });
 
   if (agencyId !== undefined) {
     if (req.method === "POST") {

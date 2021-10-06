@@ -23,15 +23,12 @@ export async function getFile(fileId) {
 }
 
 export async function getFileAttributes(fileId) {
-  return fetch(
-    `${process.env.FILESTORE_URL}/files/${fileId}/attributes`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  return fetch(`${process.env.FILESTORE_URL}/files/${fileId}/attributes`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
 
 export async function addMetadata(fileId, data) {
