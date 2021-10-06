@@ -53,13 +53,11 @@ export async function addMetadata(fileId, data) {
 }
 
 export async function searchFiles(data) {
-  const response = await fetch(`${FILESTORE_URL}/files`, {
+  return fetch(`${FILESTORE_URL}/files`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-  return response.json();
 }

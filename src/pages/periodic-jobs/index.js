@@ -19,7 +19,14 @@ const PeriodicJobsPage = () => {
       method: "POST",
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
+      .then(async (response) => {
+        if (!response.ok) {
+          const text = await response.text();
+          alert(text);
+          throw response;
+        }
+        return response.json();
+      })
       .then((item) => {
         setIsLoading(false);
         setFiles(item);
