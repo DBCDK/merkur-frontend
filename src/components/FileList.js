@@ -3,6 +3,7 @@ import { FileFilter } from "@/components/FileFilter";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { adminAgency } from "@/constants";
+import styles from "./FileList.module.css";
 
 export const FileList = ({ title, files, isLoading, loginAgency }) => {
   if (isLoading || !files) {
@@ -37,8 +38,7 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
       <div>
         <h3>{title}</h3>
       </div>
-      <div>
-        <h6>
+      <div className={styles.oldLink}>
           Ses filen ikke? Gå evt. til&nbsp;
           <a
             href="http://dbcposthus.dbc.dk/dataleverancer/index.php"
@@ -46,7 +46,6 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
           >
             Det gamle DBC-posthus
           </a>
-        </h6>
       </div>
       <div>
         <h4>Filer til afhentning</h4>
