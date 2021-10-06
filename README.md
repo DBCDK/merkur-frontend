@@ -58,5 +58,5 @@ The following environment variables can be set in the application
 Then start the next development environment
 
 ```bash
-npm run ev:next
+npm run dev:next
 ```
