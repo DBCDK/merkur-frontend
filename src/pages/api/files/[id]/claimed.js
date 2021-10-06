@@ -60,7 +60,9 @@ async function handler(req, res, agencyId) {
 
       return res.status(200).end(); //End without any body
     } else {
-      log.info(`/api/files/[id]/claimed called with unsupported method: ${req.method}`);
+      log.info(
+        `/api/files/[id]/claimed called with unsupported method: ${req.method}`
+      );
 
       return res
         .status(405)

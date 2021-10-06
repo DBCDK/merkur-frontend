@@ -33,7 +33,9 @@ async function handler(req, res, agencyId) {
         return res.status(response.status).send(response.statusText);
       }
     } else {
-      log.info(`/api/files/unclaimed called with unsupported method: ${req.method}`);
+      log.info(
+        `/api/files/unclaimed called with unsupported method: ${req.method}`
+      );
 
       return res
         .status(405)
