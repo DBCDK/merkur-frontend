@@ -19,7 +19,7 @@ async function handler(req, res, agencyId) {
       if (response.status === 200) {
         const posts = await response.json();
 
-        return res.status(200).json(mapToFileObjectList(req, posts));
+        return res.status(200).json(mapToFileObjectList(posts));
       } else {
         // Log the real exception cause but show only the generic message to the user
         log.error(

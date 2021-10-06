@@ -11,25 +11,25 @@ const mapToUtc = (millisecondsSinceEpoch) => {
   return new Date(millisecondsSinceEpoch).toISOString();
 };
 
-export function mapToFileObjectList(req, posts) {
-  return posts.map((item) => mapToFileObject(req, item));
+export function mapToFileObjectList(posts) {
+  return posts.map((item) => mapToFileObject(item));
 }
 
-export function mapToFileObject(req, fileAttributes) {
+export function mapToFileObject(fileAttributes) {
   const file = {
     filename: fileAttributes.metadata.name,
     origin: convertFileOrigin(fileAttributes.metadata.origin),
     creationTimeUTC: mapToUtc(fileAttributes.creationTime),
     byteSize: fileAttributes.byteSize,
-    downloadUrl: mapToFileUrl(req, fileAttributes, fileEndpoint),
+    downloadUrl: mapToFileUrl(fileAttributes, fileEndpoint),
   };
   if (!fileAttributes.metadata.claimed) {
-    file.claimedUrl = mapToFileUrl(req, fileAttributes, fileClaimedEndpoint);
+    file.claimedUrl = mapToFileUrl(fileAttributes, fileClaimedEndpoint);
   }
   return file;
 }
 
-function mapToFileUrl(req, fileAttributes, path) {
+function mapToFileUrl(fileAttributes, path) {
   return url.format({
     host: process.env.NEXTAUTH_URL,
     pathname: path.replace(":id", fileAttributes.id),
