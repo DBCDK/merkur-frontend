@@ -67,7 +67,7 @@ pipeline {
 			steps {
 				script {
 					sh """
-                        set-new-version services/merkur-frontend.yml ${env.GITLAB_PRIVATE_TOKEN} metascrum/merkur-frontend-secrets  ${env.IMAGE_TAG} -b staging
+                        set-new-version services/merkur-frontend.yml ${env.GITLAB_PRIVATE_TOKEN} metascrum/merkur-frontend-secrets  ${env.IMAGE_TAG} -b metascrum-staging
                      """
 				}
 			}
