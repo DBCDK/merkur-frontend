@@ -11,8 +11,23 @@ async function handler(req, res, agencyId) {
       } = req;
       log.info(agencyId + " getting file with id " + fileId);
 
-      const fileAttributes = await getFileAttributes(fileId);
-      const fileAgencyId = fileAttributes.metadata.agency;
+      const fileAttributesResponse = await getFileAttributes(fileId);
+
+      if (fileAttributesResponse.status !== 200) {
+        log.error(
+          `Status code ${
+            fileAttributesResponse.status
+          } from /api/files/${fileId}/attributes with message '${await fileAttributesResponse.text()}'`
+        );
+
+        return res
+          .status(fileAttributesResponse.status)
+          .send(fileAttributesResponse.statusText);
+      }
+
+      const fileAttributes = await fileAttributesResponse.json();
+      const metaData = fileAttributes.metadata;
+      const fileAgencyId = metaData.agency;
 
       if (adminAgency !== agencyId && fileAgencyId.toString() !== agencyId) {
         return res
@@ -20,7 +35,21 @@ async function handler(req, res, agencyId) {
           .send("Attempt to download file owned by another agency");
       }
 
-      const content = await getFile(fileId);
+      const getFileResponse = await getFile(fileId);
+
+      if (getFileResponse.status !== 200) {
+        log.error(
+          `Status code ${
+            getFileResponse.status
+          } from /api/files/${fileId} with message '${await getFileResponse.text()}'`
+        );
+
+        return res
+          .status(getFileResponse.status)
+          .send(getFileResponse.statusText);
+      }
+
+      const content = getFileResponse.body;
 
       return res.status(200).send(content);
     } else {

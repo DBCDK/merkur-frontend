@@ -14,18 +14,16 @@ export async function addFile(data) {
 }
 
 export async function getFile(fileId) {
-  const response = await fetch(`${process.env.FILESTORE_URL}/files/${fileId}`, {
+  return fetch(`${process.env.FILESTORE_URL}/files/${fileId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-  return response.body;
 }
 
 export async function getFileAttributes(fileId) {
-  const response = await fetch(
+  return fetch(
     `${process.env.FILESTORE_URL}/files/${fileId}/attributes`,
     {
       method: "GET",
@@ -34,8 +32,6 @@ export async function getFileAttributes(fileId) {
       },
     }
   );
-
-  return response.json();
 }
 
 export async function addMetadata(fileId, data) {
