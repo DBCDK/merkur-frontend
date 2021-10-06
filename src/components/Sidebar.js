@@ -8,12 +8,12 @@ export const Sidebar = () => {
       <nav id="sidebar">
         <ul>
           <li>
-            <Link href="/conversions">
+            <Link href="/konverteringer">
               <a>Konverteringsservice</a>
             </Link>
           </li>
           <li>
-            <Link href="/periodic-jobs">
+            <Link href="/dataleverancer">
               <a>Dataleverancer</a>
             </Link>
           </li>

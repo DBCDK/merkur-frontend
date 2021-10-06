@@ -11,7 +11,7 @@ export default function Index() {
     if (!session) {
       signIn();
     } else {
-      router.push("/conversions");
+      router.push("/konverteringer");
     }
   }, []);
 
