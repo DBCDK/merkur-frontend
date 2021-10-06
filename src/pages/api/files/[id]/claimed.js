@@ -18,9 +18,11 @@ async function handler(req, res, agencyId) {
 
       if (fileAttributesResponse.status !== 200) {
         log.error(
-          `Status code ${
+          `Exception caught in /api/files/${fileId}/claimed while calling ${
+            fileAttributesResponse.url
+          }. Got unexpected status code ${
             fileAttributesResponse.status
-          } from /api/files/${fileId}/attributes with message '${await fileAttributesResponse.text()}'`
+          }  with message '${await fileAttributesResponse.text()}'`
         );
 
         return res
@@ -44,9 +46,11 @@ async function handler(req, res, agencyId) {
 
       if (addMetadataResponse.status !== 200) {
         log.error(
-          `Status code ${
+          `Exception caught in /api/files/${fileId}/claimed while calling ${
+            addMetadataResponse.url
+          }. Got unexpected status code ${
             addMetadataResponse.status
-          } from /api/files/${fileId}/metadata with message '${await addMetadataResponse.text()}'`
+          }  with message '${await addMetadataResponse.text()}'`
         );
 
         return res

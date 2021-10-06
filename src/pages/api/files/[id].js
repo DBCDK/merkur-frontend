@@ -15,9 +15,11 @@ async function handler(req, res, agencyId) {
 
       if (fileAttributesResponse.status !== 200) {
         log.error(
-          `Status code ${
+          `Exception caught in /api/files/${fileId} while calling ${
+            fileAttributesResponse.url
+          }. Got unexpected status code ${
             fileAttributesResponse.status
-          } from /api/files/${fileId}/attributes with message '${await fileAttributesResponse.text()}'`
+          }  with message '${await fileAttributesResponse.text()}'`
         );
 
         return res
@@ -39,9 +41,11 @@ async function handler(req, res, agencyId) {
 
       if (getFileResponse.status !== 200) {
         log.error(
-          `Status code ${
+          `Exception caught in /api/files/${fileId} while calling ${
+            getFileResponse.url
+          }. Got unexpected status code ${
             getFileResponse.status
-          } from /api/files/${fileId} with message '${await getFileResponse.text()}'`
+          }  with message '${await getFileResponse.text()}'`
         );
 
         return res

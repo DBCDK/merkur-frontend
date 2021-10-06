@@ -16,7 +16,6 @@ async function handler(req, res, agencyId) {
       };
 
       const response = await searchFiles(data);
-
       if (response.status === 200) {
         const posts = await response.json();
 
@@ -24,9 +23,11 @@ async function handler(req, res, agencyId) {
       } else {
         // Log the real exception cause but show only the generic message to the user
         log.error(
-          `Status code ${
+          `Exception caught in /api/files/unclaimed while calling ${
+            response.url
+          }. Got unexpected status code ${
             response.status
-          } from /api/files/search with message '${await response.text()}'`
+          }  with message '${await response.text()}'`
         );
 
         return res.status(response.status).send(response.statusText);
