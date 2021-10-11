@@ -1,13 +1,13 @@
-import FileListPage from "@/components/FileListPage";
+import {FileList} from "@/components/FileList";
 
 export default {
-  title: "Interne komponenter/FileListPage",
-  component: FileListPage,
+  title: "Interne komponenter/FileList",
+  component: FileList,
 };
 
 export function userIs010100() {
   return (
-    <FileListPage
+    <FileList
       files={conversionFiles}
       isLoading={false}
       loginAgency={"010100"}
@@ -18,7 +18,7 @@ export function userIs010100() {
 
 export function userIs810010() {
   return (
-    <FileListPage
+    <FileList
       files={conversionFiles}
       isLoading={false}
       loginAgency={"810010"}
