@@ -10,14 +10,6 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
  */
 module.exports = (phase, { defautConfig }) => {
   console.info("Next js phase: ", phase);
-  if (phase === PHASE_DEVELOPMENT_SERVER) {
-    if (process.env.MOCK_SERVER === "true") {
-      console.info(`Mock server activated`);
-      process.env.FILESTORE_URL = process.env.MOCK_FILESTORE_URL;
-    } else {
-      process.env.FILESTORE_URL = process.env.FILESTORE_STAGING_URL;
-    }
-  }
   console.info(`Filestore url = ${process.env.FILESTORE_URL}`);
 
   return {

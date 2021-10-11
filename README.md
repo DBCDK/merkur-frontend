@@ -46,6 +46,8 @@ The following environment variables must be set in the application
   This is the return url from adgangsplatformen
 - **APIKEYS**
   JSON array of valid API logins
+- **FILESTORE_URL**
+  Full URL to the filestore API
 
 The following environment variables can be set in the application
 
