@@ -227,10 +227,9 @@ paths:
                 type: string
 components:
   securitySchemes:
-    BearerAuth:
+    basicAuth:
       type: http
       scheme: basic
-      in: header
 
   schemas:
     FileList:
@@ -259,4 +258,4 @@ components:
         - downloadUrl
 
 security:
-  - BearerAuth: []
+  - basicAuth: []
