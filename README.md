@@ -1,4 +1,5 @@
 # Merkur-frontend
+
 This is the code behind https://posthus.netpunkt.dk, written in Next.js
 
 ## Getting started
@@ -57,6 +58,7 @@ The following environment variables can be set in the application
   Port on which storybook runs. Defaults is 4000.
 
 ### Start application
+
 Then start the next development environment
 
 ```bash
