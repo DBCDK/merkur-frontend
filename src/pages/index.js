@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react";
+import React, { useCallback, useEffect } from "react";
 import { getSession, useSession } from "next-auth/client";
 import { signIn } from "@dbcdk/login-nextjs/client";
 import { useRouter } from "next/router";
