@@ -1,10 +1,10 @@
-import {Footer} from "@/components/Footer";
+import { Footer } from "@/components/Footer";
 
 export default {
-    title: "Interne komponenter/Footer",
-    component: Footer,
-}
+  title: "Interne komponenter/Footer",
+  component: Footer,
+};
 
 export function example() {
-    return <Footer/>
+  return <Footer />;
 }

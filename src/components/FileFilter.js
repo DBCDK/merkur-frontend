@@ -24,9 +24,9 @@ export const FileFilter = ({ agencies, setSelectedAgency, loginAgency }) => {
           </option>
         )}
         {filteredAgencies().map((item) => (
-        <option key={item} value={item}>
-          {item}
-        </option>
+          <option key={item} value={item}>
+            {item}
+          </option>
         ))}
       </select>
     </div>

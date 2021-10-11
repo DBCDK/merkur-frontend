@@ -1,4 +1,4 @@
-import {FileList} from "@/components/FileList";
+import { FileList } from "@/components/FileList";
 
 export default {
   title: "Interne komponenter/FileList",

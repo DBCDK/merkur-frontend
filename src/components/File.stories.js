@@ -17,8 +17,8 @@ export function example() {
   };
 
   return (
-      <div>
-          <p>{File(file)}</p>
-      </div>
+    <div>
+      <p>{File(file)}</p>
+    </div>
   );
 }
