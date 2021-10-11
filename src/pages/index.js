@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useCallback, useEffect} from "react";
 import { getSession, useSession } from "next-auth/client";
 import { signIn } from "@dbcdk/login-nextjs/client";
 import { useRouter } from "next/router";
@@ -7,12 +7,17 @@ export default function Index() {
   const [session] = useSession();
   const router = useRouter();
 
-  useEffect(async () => {
-    if (!session) {
+  const waitForSession = useCallback(async () => {
+    let s = await getSession();
+    if (!s) {
       signIn();
     } else {
       router.push("/konverteringer");
     }
+  }, [session]);
+
+  useEffect(() => {
+    waitForSession();
   }, []);
 
   return <div />;
