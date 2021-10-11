@@ -1,3 +1,5 @@
+const jsconfig = require("../jsconfig.json");
+
 /**
  * @file
  * This is a preset for storybook
@@ -15,6 +17,14 @@ module.exports = {
 
     const newConfig = {
       ...baseConfig,
+      resolve: {
+        ...baseConfig.resolve,
+        alias: {
+          ...baseConfig.resolve.alias,
+          "@/public": path.resolve(__dirname, "../public"),
+          "@": path.resolve(__dirname, "../src"),
+        },
+      },
       module: {
         ...module,
         rules: [...(module.rules || [])],
@@ -27,7 +37,7 @@ module.exports = {
 
     // First we prevent webpack from using Storybook CSS rules to process CSS modules
     newConfig.module.rules.find(
-      (rule) => rule.test.toString() === "/\\.css$/"
+        (rule) => rule.test.toString() === "/\\.css$/"
     ).exclude = /\.module\.css$/;
 
     // Then we tell webpack what to do with CSS modules
@@ -47,7 +57,7 @@ module.exports = {
 
     // Adds svg loader to storybook webpack config
     const fileLoaderRule = newConfig.module.rules.find(
-      (rule) => rule.test && rule.test.test(".svg")
+        (rule) => rule.test && rule.test.test(".svg")
     );
     fileLoaderRule.exclude = /\.svg$/;
 
