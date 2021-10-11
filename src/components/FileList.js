@@ -11,13 +11,6 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
   }
   // Extra set of unique agencies from the files
   const agencies = [...new Set(files.map((item) => item.metadata.agency))];
-  const filteredAgencies = () => {
-    if (loginAgency === adminAgency) {
-      return agencies;
-    } else {
-      return [loginAgency];
-    }
-  };
   const [selectedAgency, setSelectedAgency] = useState(loginAgency);
   const [filteredFiles, setFilteredFiles] = useState([]);
 
@@ -52,7 +45,7 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
       </div>
       <div>
         <FileFilter
-          agencies={filteredAgencies()}
+          agencies={agencies}
           setSelectedAgency={setSelectedAgency}
           loginAgency={loginAgency}
         />
