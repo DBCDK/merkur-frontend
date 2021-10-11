@@ -1,5 +1,5 @@
-export const fileClaimedEndpoint = "/api/files/:id/claimed";
-export const fileEndpoint = "/api/files/:id";
+export const fileClaimedEndpoint = "/files/:id/claimed";
+export const fileEndpoint = "/files/:id";
 export const conversionsOrigin = "dataio/sink/marcconv";
 export const periodicJobsOrigin = "dataio/sink/periodic-jobs";
 export const defaultCategory = "dataout";
