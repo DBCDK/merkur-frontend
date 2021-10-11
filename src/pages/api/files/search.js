@@ -6,7 +6,7 @@ import { searchFiles } from "@/components/FileStoreConnector";
 async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
     if (req.method === "POST") {
-      log.info(agencyId + " getting files");
+      log.info(agencyId + " listing files");
 
       const data = JSON.parse(req.body);
 
