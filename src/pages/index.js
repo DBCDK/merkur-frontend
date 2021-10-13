@@ -12,7 +12,7 @@ export default function Index() {
     if (!s) {
       signIn();
     } else {
-      router.push("/konverteringer");
+      router.push("/converted");
     }
   }, [session]);
 
