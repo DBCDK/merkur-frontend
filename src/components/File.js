@@ -20,7 +20,7 @@ export const File = (file) => {
   );
 
   function formatCreationTime(dateString) {
-    return new Date(dateString).toLocaleString('da-DK');
+    return new Date(dateString).toLocaleString("da-DK");
   }
 
   function byteSizeToHumanReadableSI(bytes) {
