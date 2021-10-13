@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider session={pageProps.session}>
       <Header />
+      <title>DBCs Posthus</title>
       <Sidebar loginAgency={pageProps?.session?.user?.netpunktAgency} />
       <div id="main">
         <Component {...pageProps} />
