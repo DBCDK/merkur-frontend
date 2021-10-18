@@ -1,3 +1,9 @@
+.fileList {
+  top: 4%;
+  height: 100vh;
+  padding-top: 1rem;
+}
+
 .oldLink {
   font-size: 12px;
   padding-bottom: 40px;

@@ -4,6 +4,7 @@
   width: 15%;
   padding-top: 1rem;
   font-size: 120%;
+  position: fixed;
 }
 
 .sidebar ul {

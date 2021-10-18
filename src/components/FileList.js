@@ -27,7 +27,7 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
   }, [selectedAgency, files]);
 
   return (
-    <>
+    <div className={styles.fileList}>
       <div>
         <h3>{title}</h3>
       </div>
@@ -51,7 +51,7 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
         />
       </div>
       <div>{<FileTable files={filteredFiles} />}</div>
-    </>
+    </div>
   );
 };
 
