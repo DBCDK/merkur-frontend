@@ -16,10 +16,10 @@ export const FileFilter = ({ agencies, setSelectedAgency, loginAgency }) => {
       <select
         name="agency_select"
         id="agency_select"
-        onChange={(e) => setSelectedAgency(parseInt(e?.target?.value), 10)}
+        onChange={(e) => setSelectedAgency(e?.target?.value)}
       >
         {loginAgency === adminAgency && (
-          <option value="010100" key="010100">
+          <option value="all" key="all">
             Alle
           </option>
         )}

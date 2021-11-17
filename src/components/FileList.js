@@ -16,7 +16,7 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
 
   useEffect(() => {
     // Admin agency - show everything
-    if (selectedAgency === adminAgency) {
+    if (selectedAgency === adminAgency || selectedAgency === "all") {
       setFilteredFiles(files);
     } else {
       const selectedAgencyAsInt = parseInt(selectedAgency, 10);
