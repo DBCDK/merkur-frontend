@@ -5,7 +5,9 @@ import { addFile } from "@/components/FileStoreConnector";
 async function handler(req, res, agencyId) {
   log.warn("Deprecated endpoint hit: /api/files/add");
 
-  res.status(501).json({ message: "This endpoint is no longer supported" });
+  return res
+    .status(501)
+    .json({ message: "This endpoint is no longer supported" });
 
   if (agencyId !== undefined) {
     if (req.method === "POST") {
@@ -16,7 +18,7 @@ async function handler(req, res, agencyId) {
         !("content-type" in headers) ||
         headers["content-type"] !== "application/octet-stream"
       ) {
-        res
+        return res
           .status(415)
           .json({ message: "Content-type must be application/octet-stream" });
       }
@@ -25,11 +27,13 @@ async function handler(req, res, agencyId) {
       const response = await addFile(data);
 
       if (response.status !== 201) {
-        res.status(response.status).json({ message: "Unexpected status code" });
+        return res
+          .status(response.status)
+          .json({ message: "Unexpected status code" });
       }
       const location = response.headers.get("location");
 
-      res.status(200).json({ location: location });
+      return res.status(200).json({ location: location });
     }
   }
 }

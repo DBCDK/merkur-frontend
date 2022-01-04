@@ -21,7 +21,7 @@ async function handler(req, res, agencyId) {
       if (response.status === 200) {
         const posts = await response.json();
 
-        res.status(200).json(posts);
+        return res.status(200).json(posts);
       } else {
         // Log the real exception cause but show only the generic message to the user
         log.error(
@@ -31,15 +31,15 @@ async function handler(req, res, agencyId) {
             response.status
           }  with message '${await response.text()}'`
         );
-        res.status(response.status).send(response.statusText);
+        return res.status(response.status).send(response.statusText);
       }
     } else {
-      res
+      return res
         .status(405)
         .json({ message: "The request does not support method " + req.method });
     }
   } else {
-    res.status(400).json({ message: "Agency is missing" });
+    return res.status(400).json({ message: "Agency is missing" });
   }
 }
 

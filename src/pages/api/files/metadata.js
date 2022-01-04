@@ -5,7 +5,9 @@ import { addMetadata } from "@/components/FileStoreConnector";
 async function handler(req, res, agencyId) {
   log.warn("Deprecated endpoint hit: /api/files/metadata");
 
-  res.status(501).json({ message: "This endpoint is no longer supported" });
+  return res
+    .status(501)
+    .json({ message: "This endpoint is no longer supported" });
 
   if (agencyId !== undefined) {
     if (req.method === "POST") {
@@ -17,9 +19,9 @@ async function handler(req, res, agencyId) {
 
       await addMetadata(fileId, metadata);
 
-      res.status(200).end();
+      return res.status(200).end();
     } else {
-      res
+      return res
         .status(405)
         .json({ message: "The request does not support method " + req.method });
     }
