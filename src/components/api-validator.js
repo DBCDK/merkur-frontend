@@ -36,15 +36,18 @@ export function withAuthorization(callback) {
 
 function authenticate(req, res) {
   log.debug("Authenticating via authorization header");
-
+  const clientIp = req.headers["x-real-ip"] || req.connection.remoteAddress
+  // TODO Log the path so we can see which endpoint was called
   res.setHeader("WWW-Authenticate", 'Basic realm="DBC merkur"');
   if (!req.headers.authorization) {
+    log.error(`Authorization failed from remote address '${clientIp}' - No Authorization header - returning 401 with WWW-Authenticate header (might not be an error)`);
     res.status(401).send("Missing Authorization header");
     return undefined;
   }
 
   let parts = req.headers.authorization.split(" ");
   if (parts.length !== 2) {
+    log.error(`Authorization failed from remote address '${clientIp}' - Authorization header has wrong format`);
     res
       .status(401)
       .send("Authorization header must include both type and credentials");
@@ -53,6 +56,7 @@ function authenticate(req, res) {
 
   // verify type
   if (parts[0].toLowerCase() !== "basic") {
+    log.error(`Authorization failed from remote address '${clientIp}' - Authorization type is not basic`);
     res.status(401).send("Authorization type must be Basic");
     return undefined;
   }
@@ -64,6 +68,7 @@ function authenticate(req, res) {
   parts = decodedCredentials.split(":");
 
   if (parts.length !== 2) {
+    log.error(`Authorization failed from remote address '${clientIp}' - Apikey is missing either user or secret`);
     res.status(401).send("Apikey must include both user and secret");
     return undefined;
   }
@@ -73,6 +78,7 @@ function authenticate(req, res) {
     return parts[0];
   }
 
+  log.error(`Authorization failed from remote address '${clientIp}' - Unknown agency ID or apikey: '${parts[0]}'`);
   res.status(401).send("Unknown agency ID or apikey");
   return undefined;
 }
