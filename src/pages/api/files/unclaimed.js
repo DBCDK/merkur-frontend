@@ -37,8 +37,6 @@ async function handler(req, res, agencyId) {
         .status(405)
         .json({ message: "The request does not support method " + req.method });
     }
-  } else {
-    res.status(400).json({ message: "Agency is missing" });
   }
 }
 
