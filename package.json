@@ -10,6 +10,8 @@
     "dev:storybook": "start-storybook -s ./public -p 4000",
     "build:storybook": "STORYBOOK_ACTIVE=1 build-storybook -c .storybook -o dist/storybook --quiet && cp -r public/* dist/storybook/",
     "start:storybook": "[ \"$ENABLE_STORYBOOK\" = \"1\" ] && http-server -p \"${STORYBOOK_PORT:-4000}\" dist/storybook --silent || exit 0",
+    "cy:run": "npx cypress@latest run --project ./e2e",
+    "cy:open": "npx cypress@latest open --project ./e2e",
     "build": "next build",
     "start": "NODE_OPTIONS='-r dbc-node-logger' next start",
     "prettier:format": "prettier --config .prettierrc --write **/*.{md,yml,json,js}",
@@ -24,13 +26,11 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.2.5",
     "bootstrap": "^4.6.0",
     "dbc-node-logger": "^2.0.9",
     "eslint": "^7.32.0",
     "eslint-plugin-prettier": "^4.0.0",
     "font-awesome": "^4.7.0",
-    "jest": "^27.2.5",
     "next": "^10.2.3",
     "next-auth": "3.29.0",
     "prop-types": "^15.7.2",
@@ -40,14 +40,14 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "prettier": "^2.4.1",
     "@storybook/addon-actions": "^6.3.10",
     "@storybook/addon-knobs": "^6.3.1",
-    "@storybook/react": "^6.3.10",
+    "@storybook/react": "^6.4.10",
     "@svgr/webpack": "^4.3.3",
     "lazysizes": "^5.3.2",
     "mockserver": "^3.1.1",
+    "prettier": "^2.4.1",
     "storybook-addon-next-router": "^3.0.8",
-    "style-loader": "^3.3.0"
+    "style-loader": "^1.1.2"
   }
 }
