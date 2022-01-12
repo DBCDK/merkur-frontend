@@ -50,9 +50,7 @@ async function handler(req, res, agencyId) {
           }  with message '${await getFileResponse.text()}'`
         );
 
-        res
-          .status(getFileResponse.status)
-          .send(getFileResponse.statusText);
+        res.status(getFileResponse.status).send(getFileResponse.statusText);
         return;
       }
 

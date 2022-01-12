@@ -36,9 +36,7 @@ async function handler(req, res, agencyId) {
       const fileAgencyId = metaData.agency;
 
       if (adminAgency !== agencyId && fileAgencyId.toString() !== agencyId) {
-        res
-          .status(403)
-          .send("Attempt to claim file owned by another agency");
+        res.status(403).send("Attempt to claim file owned by another agency");
         return;
       }
 

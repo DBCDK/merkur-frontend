@@ -19,7 +19,10 @@ describe("Test authorization for all endpoints", () => {
         failOnStatusCode: false,
       }).then((response) => {
         expect(response.status).to.eq(401);
-        expect(response.headers).to.have.property("www-authenticate", 'Basic realm="DBC merkur"');
+        expect(response.headers).to.have.property(
+          "www-authenticate",
+          'Basic realm="DBC merkur"'
+        );
         expect(response.body).to.eq("Missing Authorization header");
       });
     });
@@ -33,7 +36,10 @@ describe("Test authorization for all endpoints", () => {
         failOnStatusCode: false,
       }).then((response) => {
         expect(response.status).to.eq(401);
-        expect(response.headers).to.have.property("www-authenticate", 'Basic realm="DBC merkur"');
+        expect(response.headers).to.have.property(
+          "www-authenticate",
+          'Basic realm="DBC merkur"'
+        );
         expect(response.body).to.eq(
           "Authorization header must include both type and credentials"
         );
@@ -49,7 +55,10 @@ describe("Test authorization for all endpoints", () => {
         failOnStatusCode: false,
       }).then((response) => {
         expect(response.status).to.eq(401);
-        expect(response.headers).to.have.property("www-authenticate", 'Basic realm="DBC merkur"');
+        expect(response.headers).to.have.property(
+          "www-authenticate",
+          'Basic realm="DBC merkur"'
+        );
         expect(response.body).to.eq("Authorization type must be Basic");
       });
     });
@@ -63,7 +72,10 @@ describe("Test authorization for all endpoints", () => {
         failOnStatusCode: false,
       }).then((response) => {
         expect(response.status).to.eq(401);
-        expect(response.headers).to.have.property("www-authenticate", 'Basic realm="DBC merkur"');
+        expect(response.headers).to.have.property(
+          "www-authenticate",
+          'Basic realm="DBC merkur"'
+        );
         expect(response.body).to.eq("Apikey must include both user and secret");
       });
     });
@@ -77,7 +89,10 @@ describe("Test authorization for all endpoints", () => {
         failOnStatusCode: false,
       }).then((response) => {
         expect(response.status).to.eq(401);
-        expect(response.headers).to.have.property("www-authenticate", 'Basic realm="DBC merkur"');
+        expect(response.headers).to.have.property(
+          "www-authenticate",
+          'Basic realm="DBC merkur"'
+        );
         expect(response.body).to.eq("Unknown agency ID or apikey");
       });
     });
@@ -92,7 +107,10 @@ describe("Test authorization for all endpoints", () => {
         failOnStatusCode: false,
       }).then((response) => {
         expect(response.status).to.eq(401);
-        expect(response.headers).to.have.property("www-authenticate", 'Basic realm="DBC merkur"');
+        expect(response.headers).to.have.property(
+          "www-authenticate",
+          'Basic realm="DBC merkur"'
+        );
         expect(response.body).to.eq("Unknown agency ID or apikey");
       });
     });
