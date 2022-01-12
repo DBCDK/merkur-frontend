@@ -15,7 +15,7 @@ describe("Tests /files/search endpoint", () => {
       }),
       auth: {
         user: "810010",
-        pass: "yukilo",
+        pass: "pass",
       },
     }).then((response) => {
       expect(response.status).to.eq(200);
@@ -33,7 +33,7 @@ describe("Tests /files/search endpoint", () => {
       }),
       auth: {
         user: "010100",
-        pass: "qwerty",
+        pass: "pass",
       },
     }).then((response) => {
       expect(response.status).to.eq(200);

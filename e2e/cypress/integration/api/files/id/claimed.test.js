@@ -8,7 +8,7 @@ describe("Tests /files/[id]/claimed endpoint", () => {
             method: "POST",
             auth: {
                 user: "810010",
-                pass: "yukilo",
+                pass: "pass",
             },
         }).then((response) => {
             expect(response.status).to.eq(200);
