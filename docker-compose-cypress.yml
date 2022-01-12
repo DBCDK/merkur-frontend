@@ -9,6 +9,7 @@ services:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: "${IMAGE}"
     environment:
+      - NODE_ENV=production
       - ENABLE_STORYBOOK=1
       - STORYBOOK_PORT=4000
       - PORT=3000
