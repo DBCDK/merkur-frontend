@@ -1,5 +1,12 @@
 version: "3"
 services:
+  wiremock:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
+    image: wiremock/wiremock
+    volumes:
+      - "./wiremock:/home/wiremock:r"
+    depends_on:
+      - web
   web:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: "${IMAGE}"
@@ -7,8 +14,11 @@ services:
       - ENABLE_STORYBOOK=1
       - STORYBOOK_PORT=4000
       - PORT=3000
-      - NEXT_AUTH_URL=http://web:3000
-      - FILESTORE_URL=MOCKME
+      - NEXTAUTH_URL=http://web:3000
+      - APIKEYS={"010100":{"apikey":"pass"},"820030":{"apikey":"pass"},"test":{"apikey":"test"},"810010":{"apikey":"pass"}}
+      - CLIENT_ID=a_client_id
+      - CLIENT_SECRET=a_client_secret
+      - FILESTORE_URL=http://wiremock:8080
     command: npm run start
   e2e:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
@@ -18,7 +28,7 @@ services:
     depends_on:
       - web
     environment:
-      - CYPRESS_baseUrl=http://web:4000
+      - CYPRESS_baseUrl=http://web:3000
       - CYPRESS_nextjsBaseUrl=http://web:3000
       - ELECTRON_ENABLE_LOGGING=0
     command: bash -c "umask 002 && sudo chmod 1777 /dev/shm && npm run cy"
