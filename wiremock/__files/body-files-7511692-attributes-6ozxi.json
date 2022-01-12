@@ -1,1 +1,14 @@
-{"id":7511692,"creationTime":1633983118852,"atime":null,"byteSize":3220,"metadata":{"name": "marcconv.40768", "jobId": 40768, "agency": 810010, "origin": "dataio/sink/marcconv", "claimed": false, "category": "dataout"}}
+{
+  "id": 7511692,
+  "creationTime": 1633983118852,
+  "atime": null,
+  "byteSize": 3220,
+  "metadata": {
+    "name": "marcconv.40768",
+    "jobId": 40768,
+    "agency": 810010,
+    "origin": "dataio/sink/marcconv",
+    "claimed": false,
+    "category": "dataout"
+  }
+}

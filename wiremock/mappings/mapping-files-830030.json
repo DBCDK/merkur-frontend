@@ -1,22 +1,24 @@
 {
-  "id" : "47a3582b-db91-3f7f-8944-5d8b23c56ace",
-  "request" : {
-    "url" : "/files",
-    "method" : "POST",
-    "bodyPatterns" : [ {
-      "equalToJson" : "{\"agency\":820030,\"category\":\"dataout\"}",
-      "ignoreArrayOrder" : false,
-      "ignoreExtraElements" : false
-    } ]
+  "id": "47a3582b-db91-3f7f-8944-5d8b23c56ace",
+  "request": {
+    "url": "/files",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"agency\":820030,\"category\":\"dataout\"}",
+        "ignoreArrayOrder": false,
+        "ignoreExtraElements": false
+      }
+    ]
   },
-  "response" : {
-    "status" : 200,
-    "bodyFileName" : "body-files-820030.json",
-    "headers" : {
-      "Server" : "Payara Micro #badassfish",
-      "Content-Type" : "application/json",
-      "X-Frame-Options" : "SAMEORIGIN"
+  "response": {
+    "status": 200,
+    "bodyFileName": "body-files-820030.json",
+    "headers": {
+      "Server": "Payara Micro #badassfish",
+      "Content-Type": "application/json",
+      "X-Frame-Options": "SAMEORIGIN"
     }
   },
-  "uuid" : "47a3582b-db91-3f7f-8944-5d8b23c56ace"
+  "uuid": "47a3582b-db91-3f7f-8944-5d8b23c56ace"
 }
