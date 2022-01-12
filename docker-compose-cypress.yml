@@ -4,9 +4,7 @@ services:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: wiremock/wiremock
     volumes:
-      - "./wiremock:/home/wiremock:r"
-    depends_on:
-      - web
+      - "./wiremock:/home/wiremock:ro"
   web:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: "${IMAGE}"
