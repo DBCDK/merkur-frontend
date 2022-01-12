@@ -1,0 +1,17 @@
+{
+  "id" : "7cdfc3fc-7dc3-3476-8ace-d763d45aec01",
+  "request" : {
+    "url" : "/files/7511692/attributes",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-files-7511692-attributes-6ozxi.json",
+    "headers" : {
+      "Server" : "Payara Micro #badassfish",
+      "Content-Type" : "application/json",
+      "X-Frame-Options" : "SAMEORIGIN"
+    }
+  },
+  "uuid" : "7cdfc3fc-7dc3-3476-8ace-d763d45aec01"
+}

@@ -1,0 +1,22 @@
+{
+  "id" : "5ab79ebd-4a33-393d-b540-6d0848cd119d",
+  "request" : {
+    "url" : "/files",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"agency\":810010,\"category\":\"dataout\",\"origin\":\"dataio/sink/periodic-jobs\"}",
+      "ignoreArrayOrder" : false,
+      "ignoreExtraElements" : false
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-periodic-jobs-810010.json",
+    "headers" : {
+      "Server" : "Payara Micro #badassfish",
+      "Content-Type" : "application/json",
+      "X-Frame-Options" : "SAMEORIGIN"
+    }
+  },
+  "uuid" : "5ab79ebd-4a33-393d-b540-6d0848cd119d"
+}

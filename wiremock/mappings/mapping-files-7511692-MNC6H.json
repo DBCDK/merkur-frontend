@@ -1,0 +1,17 @@
+{
+  "id" : "ef587ebb-ce4f-3e88-a424-a1fbf4bf5695",
+  "request" : {
+    "url" : "/files/7511692",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-files-7511692-MNC6H.txt",
+    "headers" : {
+      "Server" : "Payara Micro #badassfish",
+      "Content-Type" : "application/octet-stream",
+      "X-Frame-Options" : "SAMEORIGIN"
+    }
+  },
+  "uuid" : "ef587ebb-ce4f-3e88-a424-a1fbf4bf5695"
+}
