@@ -58,11 +58,13 @@ The following environment variables can be set in the application
   Port on which storybook runs. Defaults is 4000.
 
 ### Start application
+
 Start the wiremock server first
 
 ```bash
 npm run start:mock
 ```
+
 Then start the next development environment
 
 ```bash
