@@ -25,9 +25,10 @@ async function handler(req, res, agencyId) {
           }  with message '${await fileAttributesResponse.text()}'`
         );
 
-        return res
+        res
           .status(fileAttributesResponse.status)
           .send(fileAttributesResponse.statusText);
+        return;
       }
 
       const fileAttributes = await fileAttributesResponse.json();
@@ -35,9 +36,8 @@ async function handler(req, res, agencyId) {
       const fileAgencyId = metaData.agency;
 
       if (adminAgency !== agencyId && fileAgencyId.toString() !== agencyId) {
-        return res
-          .status(403)
-          .send("Attempt to claim file owned by another agency");
+        res.status(403).send("Attempt to claim file owned by another agency");
+        return;
       }
 
       metaData.claimed = true;
@@ -53,19 +53,18 @@ async function handler(req, res, agencyId) {
           }  with message '${await addMetadataResponse.text()}'`
         );
 
-        return res
+        res
           .status(addMetadataResponse.status)
           .send(addMetadataResponse.statusText);
+        return;
       }
 
-      return res.status(200).end(); //End without any body
+      res.status(200).end(); //End without any body
     } else {
-      return res
+      res
         .status(405)
         .json({ message: "The request does not support method " + req.method });
     }
-  } else {
-    return res.status(400).json({ message: "Agency is missing" });
   }
 }
 

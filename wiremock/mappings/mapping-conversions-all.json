@@ -1,0 +1,24 @@
+{
+  "id": "f8f0b899-e9a1-32c5-a095-e592bec447cc",
+  "request": {
+    "url": "/files",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"category\":\"dataout\",\"origin\":\"dataio/sink/marcconv\"}",
+        "ignoreArrayOrder": false,
+        "ignoreExtraElements": false
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "body-conversions-all.json",
+    "headers": {
+      "Server": "Payara Micro #badassfish",
+      "Content-Type": "application/json",
+      "X-Frame-Options": "SAMEORIGIN"
+    }
+  },
+  "uuid": "f8f0b899-e9a1-32c5-a095-e592bec447cc"
+}

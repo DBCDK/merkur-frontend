@@ -1,0 +1,38 @@
+[
+  {
+    "id": 5000181,
+    "creationTime": 1526293207940,
+    "atime": 1617773341767,
+    "byteSize": 26,
+    "metadata": {
+      "name": "jbn-test2",
+      "agency": 820030,
+      "origin": "merkur",
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 5000166,
+    "creationTime": 1525694853877,
+    "atime": 1632301495581,
+    "byteSize": 26,
+    "metadata": {
+      "name": "jbn-test1",
+      "agency": 820030,
+      "origin": "merkur",
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 5000133,
+    "creationTime": 1523612425104,
+    "atime": 1617773341767,
+    "byteSize": 1098916,
+    "metadata": {
+      "name": "820030.fil",
+      "agency": 820030,
+      "origin": "merkur",
+      "category": "dataout"
+    }
+  }
+]

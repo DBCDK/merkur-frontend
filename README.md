@@ -59,6 +59,12 @@ The following environment variables can be set in the application
 
 ### Start application
 
+Start the wiremock server first
+
+```bash
+npm run start:mock
+```
+
 Then start the next development environment
 
 ```bash

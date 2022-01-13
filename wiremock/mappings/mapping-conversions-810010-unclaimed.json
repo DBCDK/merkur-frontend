@@ -1,0 +1,24 @@
+{
+  "id": "7fe05b9e-7115-3485-8e77-d71af85f1420",
+  "request": {
+    "url": "/files",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"agency\":810010,\"category\":\"dataout\",\"origin\":\"dataio/sink/marcconv\",\"claimed\":false}",
+        "ignoreArrayOrder": false,
+        "ignoreExtraElements": false
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "body-conversions-810010-unclaimed.json",
+    "headers": {
+      "Server": "Payara Micro #badassfish",
+      "Content-Type": "application/json",
+      "X-Frame-Options": "SAMEORIGIN"
+    }
+  },
+  "uuid": "7fe05b9e-7115-3485-8e77-d71af85f1420"
+}

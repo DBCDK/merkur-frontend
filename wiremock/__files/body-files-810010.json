@@ -1,0 +1,100 @@
+[
+  {
+    "id": 7512355,
+    "creationTime": 1639043585000,
+    "atime": null,
+    "byteSize": 2814186,
+    "metadata": {
+      "name": "marcconv.41385",
+      "jobId": 41385,
+      "agency": 810010,
+      "origin": "dataio/sink/marcconv",
+      "claimed": false,
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 7512354,
+    "creationTime": 1639043547113,
+    "atime": null,
+    "byteSize": 221532,
+    "metadata": {
+      "name": "marcconv.41383",
+      "jobId": 41383,
+      "agency": 810010,
+      "origin": "dataio/sink/marcconv",
+      "claimed": false,
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 7512353,
+    "creationTime": 1639043511508,
+    "atime": null,
+    "byteSize": 292684,
+    "metadata": {
+      "name": "marcconv.41381",
+      "jobId": 41381,
+      "agency": 810010,
+      "origin": "dataio/sink/marcconv",
+      "claimed": false,
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 7512352,
+    "creationTime": 1639043475514,
+    "atime": null,
+    "byteSize": 2350783,
+    "metadata": {
+      "name": "marcconv.41380",
+      "jobId": 41380,
+      "agency": 810010,
+      "origin": "dataio/sink/marcconv",
+      "claimed": false,
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 7512351,
+    "creationTime": 1639043437266,
+    "atime": null,
+    "byteSize": 3022120,
+    "metadata": {
+      "name": "marcconv.41378",
+      "jobId": 41378,
+      "agency": 810010,
+      "origin": "dataio/sink/marcconv",
+      "claimed": true,
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 7512350,
+    "creationTime": 1639043398174,
+    "atime": null,
+    "byteSize": 2670608,
+    "metadata": {
+      "name": "marcconv.41375",
+      "jobId": 41375,
+      "agency": 810010,
+      "origin": "dataio/sink/marcconv",
+      "claimed": true,
+      "category": "dataout"
+    }
+  },
+  {
+    "id": 7511692,
+    "creationTime": 1633983118852,
+    "atime": null,
+    "byteSize": 3220,
+    "metadata": {
+      "name": "marcconv.40768",
+      "jobId": 40768,
+      "agency": 810010,
+      "origin": "dataio/sink/marcconv",
+      "claimed": false,
+      "category": "dataout"
+    }
+  }
+]
