@@ -27,7 +27,7 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.6.0",
-    "dbc-node-logger": "^2.0.9",
+    "dbc-node-logger": "^2.0.10",
     "eslint": "^7.32.0",
     "eslint-plugin-prettier": "^4.0.0",
     "font-awesome": "^4.7.0",
