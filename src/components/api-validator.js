@@ -40,7 +40,7 @@ function authenticate(req, res) {
   // TODO Log the path so we can see which endpoint was called
   res.setHeader("WWW-Authenticate", 'Basic realm="DBC merkur"');
   if (!req.headers.authorization) {
-    log.error(
+    log.info(
       `Authorization failed from remote address '${clientIp}' - No Authorization header - returning 401 with WWW-Authenticate header (might not be an error)`
     );
     res.status(401).send("Missing Authorization header");
