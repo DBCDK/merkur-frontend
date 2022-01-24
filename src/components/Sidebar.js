@@ -17,14 +17,6 @@ export const Sidebar = () => {
               <a>Dataleverancer</a>
             </Link>
           </li>
-          {/* TODO MS-3593 Merkur v2: Opføgning på fjernelse af upload funktionalitet */}
-          {/*{loginAgency === adminAgency && (*/}
-          {/*  <li>*/}
-          {/*    <Link href="/upload">*/}
-          {/*      <a>Upload af fil</a>*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*)}*/}
           <li>
             <a
               href="http://dbcposthus.dbc.dk/dataleverancer/index.php"

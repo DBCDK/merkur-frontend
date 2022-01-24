@@ -21,11 +21,6 @@ body {
   font-size: 130%;
 }
 
-#upload-form {
-  padding-top: 2rem;
-  display: inline-block;
-}
-
 input[type="text"] {
   background-color: white;
   border: 1px solid #ccc;
