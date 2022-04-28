@@ -11,12 +11,12 @@ chmod g+s target || true
 chmod -R g+w target || true
 
 if [[ ! -z "$BUILD_NUMBER" ]]; then
-  export IMAGE=docker-io.dbc.dk/merkur-frontend:${BRANCH_NAME}-${BUILD_NUMBER}
+  export IMAGE=docker-metascrum.artifacts.dbccloud.dk/merkur-frontend:${BRANCH_NAME}-${BUILD_NUMBER}
 else
-  export IMAGE=docker-io.dbc.dk/merkur-frontend:devel
+  export IMAGE=docker-metascrum.artifacts.dbccloud.dk/merkur-frontend:devel
 fi
 
-export CYPRESS_IMAGE=docker.dbc.dk/cypress:run-as-node-user-7
+export CYPRESS_IMAGE=docker-dbc.artifacts.dbccloud.dk/cypress:latest
 docker pull ${CYPRESS_IMAGE}
 docker-compose -f docker-compose-cypress.yml -p compose-${IMAGE} up -d wiremock
 docker-compose -f docker-compose-cypress.yml -p compose-${IMAGE} up -d web

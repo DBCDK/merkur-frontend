@@ -3,9 +3,9 @@
 case "$1" in
     docker)
         echo "### building merkur frontend service docker ###"
-        docker build -f ./Dockerfile --pull --no-cache . -t docker-io.dbc.dk/merkur-frontend:devel || exit 1
+        docker build -f ./Dockerfile --pull --no-cache . -t docker-metascrum.artifacts.dbccloud.dk/merkur-frontend:devel || exit 1
         if [[ ! -z "$BUILD_NUMBER" ]]; then
-            docker tag docker-io.dbc.dk/merkur-frontend:devel docker-io.dbc.dk/merkur-frontend:${BRANCH_NAME}-${BUILD_NUMBER}
+            docker tag docker-metascrum.artifacts.dbccloud.dk/merkur-frontend:devel docker-metascrum.artifacts.dbccloud.dk/merkur-frontend:${BRANCH_NAME}-${BUILD_NUMBER}
         fi
         ;;
 

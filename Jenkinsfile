@@ -1,7 +1,7 @@
 #!groovy
 
 def workerNode = "devel10"
-def BASE_NAME = 'docker-io.dbc.dk/merkur-frontend'
+def BASE_NAME = 'docker-metascrum.artifacts.dbccloud.dk/merkur-frontend'
 
 pipeline {
 	agent {label workerNode}
@@ -57,7 +57,7 @@ pipeline {
 			agent {
 				docker {
 					label workerNode
-					image "docker.dbc.dk/build-env:latest"
+					image "docker-dbc.artifacts.dbccloud.dk/build-env:latest"
 					alwaysPull true
 				}
 			}
