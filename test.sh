@@ -16,7 +16,7 @@ else
   export IMAGE=docker-metascrum.artifacts.dbccloud.dk/merkur-frontend:devel
 fi
 
-export CYPRESS_IMAGE=docker-dbc.artifacts.dbccloud.dk/cypress:latest
+export CYPRESS_IMAGE=docker-dbc.artifacts.dbccloud.dk/cypress:old-202228
 docker pull ${CYPRESS_IMAGE}
 docker-compose -f docker-compose-cypress.yml -p compose-${IMAGE} up -d wiremock
 docker-compose -f docker-compose-cypress.yml -p compose-${IMAGE} up -d web
