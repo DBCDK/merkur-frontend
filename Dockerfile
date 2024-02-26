@@ -1,8 +1,10 @@
 ARG NODE_BASEIMAGE=docker-dbc.artifacts.dbccloud.dk/dbc-node:latest
 # ---- Base Node ----
 FROM  $NODE_BASEIMAGE AS build
+
 # set working directory
 WORKDIR /home/node/app
+
 # copy project file
 COPY --chown=node:node . .
 USER node
