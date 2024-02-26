@@ -1,12 +1,9 @@
 import React from "react";
-import { useSession } from "next-auth/client";
 import { signIn, signOut } from "@dbcdk/login-nextjs/client";
 import styles from "@/components/Header.module.css";
 import { Button, Navbar } from "react-bootstrap";
 
-export const Header = () => {
-  const [session] = useSession();
-
+export const Header = ({ session }) => {
   // This could probably be done inline as well, however it causes rendering issues with next-auth login
   const onSignInOut = () => {
     session ? signOut() : signIn();

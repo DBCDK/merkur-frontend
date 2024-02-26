@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect } from "react";
-import { getSession, useSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 import { signIn } from "@dbcdk/login-nextjs/client";
 import { useRouter } from "next/router";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/pages/api/auth/[...nextauth]";
 
-export default function Index() {
-  const [session] = useSession();
+export default function Index({ session }) {
   const router = useRouter();
 
   const waitForSession = useCallback(async () => {
@@ -24,7 +25,7 @@ export default function Index() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getServerSession(context.req, context.res, options);
 
   return {
     props: { session },

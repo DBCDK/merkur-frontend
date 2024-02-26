@@ -1,28 +1,14 @@
 import React from "react";
 import { log } from "dbc-node-logger";
-import { getSession } from "next-auth/client";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/pages/api/auth/[...nextauth]";
 
 const apiKeys = JSON.parse(process.env.APIKEYS);
-
-export function withSession(callback) {
-  return async function checkSession(req, res) {
-    const session = await getSession({ req });
-
-    if (session) {
-      callback(req, res, session.user.netpunktAgency);
-    } else {
-      res
-        .status(403)
-        .send("Authentication with Apikey is forbidden for this endpoint");
-      return undefined;
-    }
-  };
-}
 
 export function withAuthorization(callback) {
   return async function checkAuthorization(req, res) {
     let agencyId;
-    const session = await getSession({ req });
+    const session = await getServerSession(req, res, options);
 
     if (!session) {
       agencyId = authenticate(req, res);

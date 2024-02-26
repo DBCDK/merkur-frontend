@@ -31,15 +31,6 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
       <div>
         <h3>{title}</h3>
       </div>
-      <div className={styles.oldLink}>
-        Ses filen ikke? Gå evt. til&nbsp;
-        <a
-          href="http://dbcposthus.dbc.dk/dataleverancer/index.php"
-          target="_blank"
-        >
-          Det gamle DBC-posthus
-        </a>
-      </div>
       <div>
         <h4>Filer til afhentning</h4>
       </div>
