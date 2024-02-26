@@ -12,7 +12,6 @@ pipeline {
     environment {
         IMAGE_TAG = "${env.BRANCH_NAME.toLowerCase()}-${BUILD_NUMBER}"
         IMAGE_NAME = "${BASE_NAME}:${IMAGE_TAG}"
-        IMAGE = "${BASE_NAME}:${IMAGE_NAME}"
         DOCKER_COMPOSE_NAME = "compose-${appName}-${BRANCH_NAME}-${BUILD_NUMBER}"
 		GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
 	}
@@ -35,7 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    app = docker.build("${IMAGE}", "--pull --no-cache .")
+                    app = docker.build("${IMAGE_NAME}", "--pull --no-cache .")
                 }
             }
         }
@@ -86,7 +85,7 @@ pipeline {
                 docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs e2e > logs/e2e-log.txt
                 docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs wiremock > logs/wiremock-log.txt
                 docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
-                docker rmi ${IMAGE}
+                docker rmi ${IMAGE_NAME}
             """
             archiveArtifacts 'e2e/cypress/screenshots/*, e2e/cypress/videos/*, logs/*'
         }
@@ -105,7 +104,7 @@ pipeline {
                 if ("${BRANCH_NAME}" == 'main') {
                     slackSend(channel: "${slackChannel}",
                             color: 'good',
-                            message: "${JOB_NAME} #${BUILD_NUMBER} completed, and pushed ${IMAGE} to artifactory.",
+                            message: "${JOB_NAME} #${BUILD_NUMBER} completed, and pushed ${IMAGE_NAME} to artifactory.",
                             tokenCredentialId: 'slack-global-integration-token')
                 }
             }
