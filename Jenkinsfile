@@ -1,9 +1,11 @@
 #!groovy
 
+def app
 def workerNode = "devel10"
 def BASE_NAME = 'docker-metascrum.artifacts.dbccloud.dk/merkur-frontend'
 def cypressImage = "docker-dbc.artifacts.dbccloud.dk/cypress:latest"
 def appName = "merkur-frontend"
+def slackChannel = "meta-notifications"
 
 pipeline {
 	agent {label workerNode}
@@ -87,6 +89,36 @@ pipeline {
                 """
                 archiveArtifacts 'e2e/cypress/screenshots/*, e2e/cypress/videos/*, logs/*'
 		    }
+		    failure {
+                script {
+                    if ("${BRANCH_NAME}" == 'main') {
+                        slackSend(channel: "${slackChannel}",
+                                color: 'warning',
+                                message: "${JOB_NAME} #${BUILD_NUMBER} failed and needs attention: ${BUILD_URL}",
+                                tokenCredentialId: 'slack-global-integration-token')
+                    }
+                }
+            }
+            success {
+                script {
+                    if ("${BRANCH_NAME}" == 'main') {
+                        slackSend(channel: "${slackChannel}",
+                                color: 'good',
+                                message: "${JOB_NAME} #${BUILD_NUMBER} completed, and pushed ${IMAGE} to artifactory.",
+                                tokenCredentialId: 'slack-global-integration-token')
+                    }
+                }
+            }
+            fixed {
+                script {
+                    if (BRANCH_NAME == 'main') {
+                        slackSend(channel: "${slackChannel}",
+                                color: 'good',
+                                message: "${JOB_NAME} #${BUILD_NUMBER} back to normal: ${BUILD_URL}",
+                                tokenCredentialId: 'slack-global-integration-token')
+                    }
+                }
+            }
 		}
 	}
 }
