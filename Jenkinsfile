@@ -77,48 +77,48 @@ pipeline {
 				}
 			}
 		}
-		post {
-		    always {
-		        sh """
-                    mkdir -p logs
-                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs web > logs/web-log.txt
-                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs e2e > logs/e2e-log.txt
-                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs wiremock > logs/wiremock-log.txt
-                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
-                    docker rmi ${IMAGE}
-                """
-                archiveArtifacts 'e2e/cypress/screenshots/*, e2e/cypress/videos/*, logs/*'
-		    }
-		    failure {
-                script {
-                    if ("${BRANCH_NAME}" == 'main') {
-                        slackSend(channel: "${slackChannel}",
-                                color: 'warning',
-                                message: "${JOB_NAME} #${BUILD_NUMBER} failed and needs attention: ${BUILD_URL}",
-                                tokenCredentialId: 'slack-global-integration-token')
-                    }
-                }
-            }
-            success {
-                script {
-                    if ("${BRANCH_NAME}" == 'main') {
-                        slackSend(channel: "${slackChannel}",
-                                color: 'good',
-                                message: "${JOB_NAME} #${BUILD_NUMBER} completed, and pushed ${IMAGE} to artifactory.",
-                                tokenCredentialId: 'slack-global-integration-token')
-                    }
-                }
-            }
-            fixed {
-                script {
-                    if (BRANCH_NAME == 'main') {
-                        slackSend(channel: "${slackChannel}",
-                                color: 'good',
-                                message: "${JOB_NAME} #${BUILD_NUMBER} back to normal: ${BUILD_URL}",
-                                tokenCredentialId: 'slack-global-integration-token')
-                    }
-                }
-            }
-		}
 	}
+	post {
+        always {
+            sh """
+                mkdir -p logs
+                docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs web > logs/web-log.txt
+                docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs e2e > logs/e2e-log.txt
+                docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs wiremock > logs/wiremock-log.txt
+                docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
+                docker rmi ${IMAGE}
+            """
+            archiveArtifacts 'e2e/cypress/screenshots/*, e2e/cypress/videos/*, logs/*'
+        }
+        failure {
+            script {
+                if ("${BRANCH_NAME}" == 'main') {
+                    slackSend(channel: "${slackChannel}",
+                            color: 'warning',
+                            message: "${JOB_NAME} #${BUILD_NUMBER} failed and needs attention: ${BUILD_URL}",
+                            tokenCredentialId: 'slack-global-integration-token')
+                }
+            }
+        }
+        success {
+            script {
+                if ("${BRANCH_NAME}" == 'main') {
+                    slackSend(channel: "${slackChannel}",
+                            color: 'good',
+                            message: "${JOB_NAME} #${BUILD_NUMBER} completed, and pushed ${IMAGE} to artifactory.",
+                            tokenCredentialId: 'slack-global-integration-token')
+                }
+            }
+        }
+        fixed {
+            script {
+                if (BRANCH_NAME == 'main') {
+                    slackSend(channel: "${slackChannel}",
+                            color: 'good',
+                            message: "${JOB_NAME} #${BUILD_NUMBER} back to normal: ${BUILD_URL}",
+                            tokenCredentialId: 'slack-global-integration-token')
+                }
+            }
+        }
+    }
 }
