@@ -2,12 +2,16 @@
 
 def workerNode = "devel10"
 def BASE_NAME = 'docker-metascrum.artifacts.dbccloud.dk/merkur-frontend'
+def cypressImage = "docker-dbc.artifacts.dbccloud.dk/cypress:latest"
+def appName = "merkur-frontend"
 
 pipeline {
 	agent {label workerNode}
     environment {
         IMAGE_TAG = "${env.BRANCH_NAME.toLowerCase()}-${BUILD_NUMBER}"
         IMAGE_NAME = "${BASE_NAME}:${IMAGE_TAG}"
+        IMAGE = "${BASE_NAME}:${IMAGE_NAME}"
+        DOCKER_COMPOSE_NAME = "compose-${appName}-${BRANCH_NAME}-${BUILD_NUMBER}"
 		GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
 	}
     triggers {
@@ -16,6 +20,7 @@ pipeline {
     }
 	options {
 		timestamps()
+		ansiColor('xterm')
 		disableConcurrentBuilds()
 	}
 	stages {
@@ -28,19 +33,17 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    ansiColor("xterm") {
-                        sh """
-                            ./build.sh
-                            ./build.sh docker
-                           """
-                    }
+                    app = docker.build("${IMAGE}", "--pull --no-cache .")
                 }
             }
         }
         stage('verify') {
             steps {
-                sh "./test.sh"
-                junit testResults: 'target/reports/test-result*.xml'
+                script {
+                    sh "docker pull ${cypressImage}"
+                    sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
+                    sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run --rm e2e"
+                }
             }
         }
 		stage("docker push") {
@@ -49,7 +52,7 @@ pipeline {
 			}
 			steps {
 				script {
-					docker.image(IMAGE_NAME).push()
+					app.push()
 				}
 			}
 		}
@@ -71,6 +74,19 @@ pipeline {
                      """
 				}
 			}
+		}
+		post {
+		    always {
+		        sh """
+                    mkdir -p logs
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs web > logs/web-log.txt
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs e2e > logs/e2e-log.txt
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs wiremock > logs/wiremock-log.txt
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
+                    docker rmi ${IMAGE}
+                """
+                archiveArtifacts 'e2e/cypress/screenshots/*, e2e/cypress/videos/*, logs/*'
+		    }
 		}
 	}
 }
