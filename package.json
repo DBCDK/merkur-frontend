@@ -36,7 +36,6 @@
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-bootstrap": "^1.6.4",
-    "react-bootstrap-table-next": "^4.0.3",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
@@ -48,7 +47,6 @@
     "mockserver": "^3.1.1",
     "prettier": "^2.4.1",
     "storybook-addon-next-router": "^3.0.8",
-    "style-loader": "^1.1.2",
-    "wiremock-standalone": "^3.1.1"
+    "style-loader": "^1.1.2"
   }
 }
