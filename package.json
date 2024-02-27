@@ -17,7 +17,7 @@
     "prettier:format": "prettier --config .prettierrc --write **/*.{md,yml,json,js}",
     "prettier:ci": "prettier **/*.{md,yml,json,js} --check",
     "lint": "eslint src/",
-    "start:mock": "wiremock --root-dir ./wiremock"
+    "mock": "scripts/mock-server.sh"
   },
   "dependencies": {
     "@dbcdk/login-nextjs": "^3.2.2",
