@@ -2,15 +2,19 @@ version: "3"
 services:
   wiremock:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
-    image: wiremock/wiremock
+    networks:
+      cypress:
+    image: docker-metascrum.artifacts.dbccloud.dk/wiremock:3.3.1
     volumes:
       - "./wiremock:/home/wiremock:ro"
   web:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: "${IMAGE_NAME}"
+    networks:
+      cypress:
     environment:
       - NODE_ENV=production
-      - ENABLE_STORYBOOK=1
+      - ENABLE_STORYBOOK=0
       - STORYBOOK_PORT=4000
       - PORT=3000
       - NEXTAUTH_URL=http://web:3000
@@ -19,9 +23,13 @@ services:
       - CLIENT_ID=a_client_id
       - CLIENT_SECRET=a_client_secret
       - FILESTORE_URL=http://wiremock:8080
+    depends_on:
+      - wiremock
     command: npm run start
   e2e:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
+    networks:
+      cypress:
     image: docker-dbc.artifacts.dbccloud.dk/cypress:latest
     volumes:
       - "./e2e:/app/e2e"
@@ -31,3 +39,6 @@ services:
       - CYPRESS_baseUrl=http://web:3000
       - CYPRESS_nextjsBaseUrl=http://web:3000
       - ELECTRON_ENABLE_LOGGING=0
+networks:
+  cypress:
+    driver: bridge
