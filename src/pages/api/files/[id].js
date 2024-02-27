@@ -2,6 +2,7 @@ import { log } from "dbc-node-logger";
 import { adminAgency } from "@/constants";
 import { withAuthorization } from "@/components/api-validator";
 import { getFile, getFileAttributes } from "@/components/FileStoreConnector";
+import { Readable } from "stream";
 
 async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
@@ -53,10 +54,7 @@ async function handler(req, res, agencyId) {
         res.status(getFileResponse.status).send(getFileResponse.statusText);
         return;
       }
-
-      const content = getFileResponse.body;
-
-      res.status(200).send(content);
+      Readable.from(getFileResponse.body).pipe(res);
     } else {
       res
         .status(405)
