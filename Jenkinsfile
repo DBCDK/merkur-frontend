@@ -1,7 +1,7 @@
 #!groovy
 
 def app
-def workerNode = "devel10"
+def workerNode = "devel11"
 def BASE_NAME = 'docker-metascrum.artifacts.dbccloud.dk/merkur-frontend'
 def cypressImage = "docker-dbc.artifacts.dbccloud.dk/cypress:latest"
 def appName = "merkur-frontend"
@@ -16,17 +16,18 @@ pipeline {
 		GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
 	}
     triggers {
-        upstream(upstreamProjects: "Docker-base-node-bump-trigger",
-            threshold: hudson.model.Result.SUCCESS)
+        upstream(upstreamProjects: "Docker-base-node-bump-trigger", threshold: hudson.model.Result.SUCCESS)
     }
 	options {
 		timestamps()
 		ansiColor('xterm')
 		disableConcurrentBuilds()
+		gitLabConnection('isworker')
 	}
 	stages {
         stage('Clear workspace') {
             steps {
+                updateGitlabCommitStatus name: 'build', state: 'running'
                 deleteDir()
                 checkout scm
             }
@@ -98,6 +99,7 @@ pipeline {
                             tokenCredentialId: 'slack-global-integration-token')
                 }
             }
+            updateGitlabCommitStatus name: 'build', state: 'failed'
         }
         success {
             script {
@@ -108,6 +110,7 @@ pipeline {
                             tokenCredentialId: 'slack-global-integration-token')
                 }
             }
+            updateGitlabCommitStatus name: 'build', state: 'success'
         }
         fixed {
             script {
@@ -118,6 +121,7 @@ pipeline {
                             tokenCredentialId: 'slack-global-integration-token')
                 }
             }
+            updateGitlabCommitStatus name: 'build', state: 'success'
         }
     }
 }

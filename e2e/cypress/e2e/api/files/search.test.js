@@ -23,7 +23,7 @@ describe("Tests /files/search endpoint", () => {
     });
   });
 
-  it.only("OK - admin agency", () => {
+  it("OK - admin agency", () => {
     cy.request({
       method: "POST",
       url: nextjsBaseUrl + endpoint,
