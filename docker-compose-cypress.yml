@@ -19,7 +19,7 @@ services:
       - PORT=3000
       - NEXTAUTH_URL=http://web:3000
       - NEXTAUTH_SECRET=a_long_next_auth_secret
-      - APIKEYS={"010100":{"apikey":"pass"},"820030":{"apikey":"pass"},"test":{"apikey":"test"},"810010":{"apikey":"pass"}}
+      - APIKEYS={"790900":{"apikey":"pass"},"820030":{"apikey":"pass"},"test":{"apikey":"test"},"810010":{"apikey":"pass"}}
       - CLIENT_ID=a_client_id
       - CLIENT_SECRET=a_client_secret
       - FILESTORE_URL=http://wiremock:8080

@@ -23,7 +23,7 @@ describe("Tests /files/search endpoint", () => {
     });
   });
 
-  it("OK - admin agency", () => {
+  it.only("OK - admin agency", () => {
     cy.request({
       method: "POST",
       url: nextjsBaseUrl + endpoint,
@@ -32,7 +32,7 @@ describe("Tests /files/search endpoint", () => {
         origin: conversionsOrigin,
       }),
       auth: {
-        user: "010100",
+        user: "790900",
         pass: "pass",
       },
     }).then((response) => {
