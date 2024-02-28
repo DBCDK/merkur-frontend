@@ -22,12 +22,10 @@ pipeline {
 		timestamps()
 		ansiColor('xterm')
 		disableConcurrentBuilds()
-		gitLabConnection('isworker')
 	}
 	stages {
         stage('Clear workspace') {
             steps {
-                updateGitlabCommitStatus name: 'build', state: 'running'
                 deleteDir()
                 checkout scm
             }
@@ -99,7 +97,6 @@ pipeline {
                             tokenCredentialId: 'slack-global-integration-token')
                 }
             }
-            updateGitlabCommitStatus name: 'build', state: 'failed'
         }
         success {
             script {
@@ -110,7 +107,6 @@ pipeline {
                             tokenCredentialId: 'slack-global-integration-token')
                 }
             }
-            updateGitlabCommitStatus name: 'build', state: 'success'
         }
         fixed {
             script {
@@ -121,7 +117,6 @@ pipeline {
                             tokenCredentialId: 'slack-global-integration-token')
                 }
             }
-            updateGitlabCommitStatus name: 'build', state: 'success'
         }
     }
 }
