@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# This script does not work on MacOS
 
 rm -rf target || true
 cp -R e2e target
