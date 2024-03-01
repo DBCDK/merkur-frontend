@@ -96,7 +96,6 @@ pipeline {
                 color: 'warning',
                 message: "${JOB_NAME} #${BUILD_NUMBER} failed and needs attention: ${BUILD_URL}",
                 tokenCredentialId: 'slack-global-integration-token')
-            }
         }
         success {
             when {
@@ -106,8 +105,6 @@ pipeline {
                     color: 'good',
                     message: "${JOB_NAME} #${BUILD_NUMBER} completed, and pushed ${IMAGE_NAME} to artifactory.",
                     tokenCredentialId: 'slack-global-integration-token')
-
-            }
         }
         fixed {
             when {
@@ -117,8 +114,6 @@ pipeline {
                     color: 'good',
                     message: "${JOB_NAME} #${BUILD_NUMBER} back to normal: ${BUILD_URL}",
                     tokenCredentialId: 'slack-global-integration-token')
-                }
-
         }
     }
 }
