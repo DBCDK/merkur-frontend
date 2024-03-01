@@ -8,22 +8,10 @@ export const Sidebar = () => {
       <nav id="sidebar">
         <ul>
           <li>
-            <Link href="/converted">
-              <a>Konverteringsservice</a>
-            </Link>
+            <Link href="/converted">Konverteringsservice</Link>
           </li>
           <li>
-            <Link href="/delivered">
-              <a>Dataleverancer</a>
-            </Link>
-          </li>
-          <li>
-            <a
-              href="http://dbcposthus.dbc.dk/dataleverancer/index.php"
-              target="_blank"
-            >
-              Det gamle DBC-posthus
-            </a>
+            <Link href="/delivered">Dataleverancer</Link>
           </li>
         </ul>
       </nav>

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { getSession, useSession } from "next-auth/client";
 import { defaultCategory, periodicJobsOrigin } from "@/constants";
 import { FileList } from "@/components/FileList";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/pages/api/auth/[...nextauth]";
 
-const PeriodicJobsPage = () => {
-  const [session] = useSession();
+const PeriodicJobsPage = ({ session }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,7 +46,7 @@ const PeriodicJobsPage = () => {
 };
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getServerSession(context.req, context.res, options);
 
   if (!session) {
     return {

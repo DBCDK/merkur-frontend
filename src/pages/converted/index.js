@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { getSession, useSession } from "next-auth/client";
+import { getServerSession } from "next-auth/next";
 import { conversionsOrigin, defaultCategory } from "@/constants";
 import { FileList } from "@/components/FileList";
+import { options } from "@/pages/api/auth/[...nextauth]";
 
-const ConversionPage = () => {
-  const [session] = useSession();
+const ConversionPage = ({ session }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,7 +46,7 @@ const ConversionPage = () => {
 };
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getServerSession(context.req, context.res, options);
 
   if (!session) {
     return {

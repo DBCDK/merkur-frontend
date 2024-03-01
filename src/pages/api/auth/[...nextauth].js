@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { adgangsplatformen, callbacks } from "@dbcdk/login-nextjs";
 
-const options = {
+export const options = {
   providers: [
     {
       ...adgangsplatformen({

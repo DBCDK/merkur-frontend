@@ -32,7 +32,7 @@ describe("Tests /files/search endpoint", () => {
         origin: conversionsOrigin,
       }),
       auth: {
-        user: "010100",
+        user: "790900",
         pass: "pass",
       },
     }).then((response) => {

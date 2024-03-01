@@ -1,10 +1,13 @@
-ARG NODE_BASEIMAGE=docker-dbc.artifacts.dbccloud.dk/dbc-node:old-202235
+ARG NODE_BASEIMAGE=docker-dbc.artifacts.dbccloud.dk/dbc-node:latest
 # ---- Base Node ----
 FROM  $NODE_BASEIMAGE AS build
+
 # set working directory
 WORKDIR /home/node/app
+
 # copy project file
-COPY . .
+COPY --chown=node:node . .
+USER node
 
 # install dependencies
 RUN npm set progress=false && npm config set depth 0 && \
