@@ -4,7 +4,7 @@ services:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     networks:
       cypress:
-    image: docker-metascrum.artifacts.dbccloud.dk/wiremock:3.3.1
+    image: docker-externals.artifacts.dbccloud.dk/wiremock:3.3.1
     volumes:
       - "./wiremock:/home/wiremock:ro"
   web:
