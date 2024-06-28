@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@dbcdk/login-nextjs": "^3.2.2",
+    "@dbcdk/npm-tools": "^2.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -29,7 +30,7 @@
     "bootstrap": "^4.6.0",
     "dbc-node-logger": "^2.0.10",
     "font-awesome": "^4.7.0",
-    "next": "^13.1.6",
+    "next": "^11.1.4",
     "next-auth": "^4.22.1",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
@@ -39,15 +40,15 @@
   "devDependencies": {
     "@storybook/nextjs": "^7.0.22",
     "@storybook/react": "^7.0.22",
+    "@svgr/webpack": "^6.2.1",
+    "cypress": "10.3.0",
     "eslint": "^7.32.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "@svgr/webpack": "^6.2.1",
     "lazysizes": "^5.3.2",
     "mockserver": "^3.1.1",
     "prettier": "^2.4.1",
     "storybook": "^7.0.22",
     "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0",
-    "cypress": "10.3.0"
+    "webpack-cli": "^4.10.0"
   }
 }
