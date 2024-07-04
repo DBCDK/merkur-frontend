@@ -17,7 +17,9 @@
     "prettier:format": "prettier --config .prettierrc --write **/*.{md,yml,json,js}",
     "prettier:ci": "prettier **/*.{md,yml,json,js} --check",
     "lint": "eslint src/",
-    "mock": "scripts/mock-server.sh"
+    "mock": "scripts/mock-server.sh",
+    "postinstall": "npx --yes @dbcdk/npm-tools@latest verify latest"
+
   },
   "dependencies": {
     "@dbcdk/login-nextjs": "^3.2.2",
