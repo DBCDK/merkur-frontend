@@ -10,8 +10,8 @@
     "dev:storybook": "STORYBOOK_ACTIVE=1 storybook dev -p \"${STORYBOOK_PORT:-4000}\"",
     "build:storybook": "STORYBOOK_ACTIVE=1 storybook build -c .storybook -o dist/storybook --quiet && cp -r public/* dist/storybook/",
     "start:storybook": "[ \"$ENABLE_STORYBOOK\" = \"1\" ] && http-server -p \"${STORYBOOK_PORT:-4000}\" dist/storybook --silent || exit 0",
-    "cy:run": "npx cypress@10.3.0 run --project ./e2e",
-    "cy:open": "npx cypress@10.3.0 open --project ./e2e",
+    "cy:run": "npx cypress@13.11.0 run --project ./e2e",
+    "cy:open": "npx cypress@13.11.0 open --project ./e2e",
     "build": "next build",
     "start": "NODE_OPTIONS='-r dbc-node-logger' next start",
     "prettier:format": "prettier --config .prettierrc --write **/*.{md,yml,json,js}",
@@ -19,7 +19,6 @@
     "lint": "eslint src/",
     "mock": "scripts/mock-server.sh",
     "postinstall": "npx --yes @dbcdk/npm-tools@latest verify latest"
-
   },
   "dependencies": {
     "@dbcdk/login-nextjs": "^3.2.2",
@@ -50,6 +49,6 @@
     "storybook": "^7.0.22",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
-    "cypress": "10.3.0"
+    "cypress": "13.11.0"
   }
 }
