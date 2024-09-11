@@ -32,13 +32,17 @@ services:
       cypress:
     image: docker-dbc.artifacts.dbccloud.dk/cypress:latest
     volumes:
-      - "./e2e:/app/e2e"
+      - "./e2e/cypress:/app/cypress"
+      - "./e2e/cypress.config.js:/app/cypress.config.js"
     depends_on:
       - web
     environment:
       - CYPRESS_baseUrl=http://web:3000
       - CYPRESS_nextjsBaseUrl=http://web:3000
       - ELECTRON_ENABLE_LOGGING=0
+      - BROWSER=electron
+      - CONFIG_FILE=cypress.config.js
+      - CYPRESS_FOLDER=/app/cypress
 networks:
   cypress:
     driver: bridge
