@@ -30,7 +30,7 @@
     "bootstrap": "^4.6.0",
     "dbc-node-logger": "^2.0.10",
     "font-awesome": "^4.7.0",
-    "next": "^13.1.6",
+    "next": "^13.5.7",
     "next-auth": "^4.22.1",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
