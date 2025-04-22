@@ -6,6 +6,7 @@ def BASE_NAME = 'docker-metascrum.artifacts.dbccloud.dk/merkur-frontend'
 def cypressImage = "docker-dbc.artifacts.dbccloud.dk/cypress:latest"
 def appName = "merkur-frontend"
 def slackChannel = "meta-notifications"
+def gitMainBranch = 'main'
 
 pipeline {
 	agent {label workerNode}
@@ -16,7 +17,11 @@ pipeline {
 		GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
 	}
     triggers {
-        upstream(upstreamProjects: "Docker-base-node-bump-trigger", threshold: hudson.model.Result.SUCCESS)
+        cron( env.BRANCH_NAME == gitMainBranch ? 'H 2 * * 9' : '' )
+        upstream(
+            upstreamProjects: env.BRANCH_NAME == gitMainBranch ? 'Docker-base-node-bump-trigger' : '',
+            threshold: hudson.model.Result.SUCCESS
+        )
     }
 	options {
 		timestamps()
