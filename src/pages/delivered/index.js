@@ -8,12 +8,12 @@ const PeriodicJobsPage = ({ session }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const data = {
-    category: defaultCategory,
-    origin: periodicJobsOrigin,
-  };
 
   useEffect(() => {
+    const data = {
+      category: defaultCategory,
+      origin: periodicJobsOrigin,
+    };
     setIsLoading(true);
     fetch("/api/files/search", {
       method: "POST",

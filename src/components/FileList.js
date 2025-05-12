@@ -6,9 +6,6 @@ import { adminAgency } from "@/constants";
 import styles from "./FileList.module.css";
 
 export const FileList = ({ title, files, isLoading, loginAgency }) => {
-  if (isLoading || !files) {
-    return <p>Indlæser data...</p>;
-  }
   // Extra set of unique agencies from the files
   const agencies = [...new Set(files.map((item) => item.metadata.agency))];
   const [selectedAgency, setSelectedAgency] = useState(loginAgency);
@@ -21,10 +18,14 @@ export const FileList = ({ title, files, isLoading, loginAgency }) => {
     } else {
       const selectedAgencyAsInt = parseInt(selectedAgency, 10);
       setFilteredFiles(
-        files.filter((item) => item.metadata.agency === selectedAgencyAsInt)
+        files.filter((item) => item.metadata.agency === selectedAgencyAsInt),
       );
     }
   }, [selectedAgency, files]);
+
+  if (isLoading || !files) {
+    return <p>Indlæser data...</p>;
+  }
 
   return (
     <div className={styles.fileList}>

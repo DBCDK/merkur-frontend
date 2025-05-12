@@ -1,4 +1,3 @@
-import React from "react";
 import url from "url";
 import {
   conversionsOrigin,

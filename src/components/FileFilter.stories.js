@@ -4,10 +4,12 @@ const onSetSelectedAgency = (value) => {
   alert(`Valgt agency: ${value}`);
 };
 
-export default {
+const exportedObject = {
   title: "Interne komponenter/FileFilter",
   component: FileFilter,
 };
+
+export default exportedObject;
 
 export function userIsAdmin() {
   return (

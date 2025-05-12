@@ -1,4 +1,3 @@
-import React from "react";
 import { log } from "dbc-node-logger";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/pages/api/auth/[...nextauth]";

@@ -14,8 +14,6 @@
     "cy:open": "npx cypress@13.11.0 open --project ./e2e",
     "build": "next build",
     "start": "NODE_OPTIONS='-r dbc-node-logger' next start",
-    "prettier:format": "prettier --config .prettierrc --write **/*.{md,yml,json,js}",
-    "prettier:ci": "prettier **/*.{md,yml,json,js} --check",
     "lint": "eslint src/",
     "mock": "scripts/mock-server.sh",
     "postinstall": "npx --yes @dbcdk/npm-tools@latest verify latest"
@@ -38,15 +36,16 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@storybook/nextjs": "^8.6.12",
-    "@storybook/react": "^8.6.12",
-    "eslint": "^8.57.1",
-    "eslint-plugin-prettier": "^5.4.0",
+    "@storybook/nextjs": "^7.6.20",
+    "@storybook/react": "^7.6.20",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "15.3.2",
+    "eslint-config-prettier": "^10.1.5",
     "@svgr/webpack": "^8.1.0",
     "lazysizes": "^5.3.2",
     "mockserver": "^3.1.1",
     "prettier": "^3.5.3",
-    "storybook": "^8.6.12",
+    "storybook": "^7.6.20",
     "webpack": "^5.99.8",
     "webpack-cli": "^6.0.1",
     "cypress": "13.17.0"

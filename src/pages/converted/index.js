@@ -8,12 +8,12 @@ const ConversionPage = ({ session }) => {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const data = {
-    category: defaultCategory,
-    origin: conversionsOrigin,
-  };
 
   useEffect(() => {
+    const data = {
+      category: defaultCategory,
+      origin: conversionsOrigin,
+    };
     setIsLoading(true);
     fetch("/api/files/search", {
       method: "POST",
