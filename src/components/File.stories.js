@@ -1,9 +1,11 @@
 import { File } from "@/components/File";
 
-export default {
+const exportedObject = {
   title: "Interne komponenter/File",
   component: File,
 };
+
+export default exportedObject;
 
 export function example() {
   const file = {

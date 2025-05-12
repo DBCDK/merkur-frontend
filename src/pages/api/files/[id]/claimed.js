@@ -22,7 +22,7 @@ async function handler(req, res, agencyId) {
             fileAttributesResponse.url
           }. Got unexpected status code ${
             fileAttributesResponse.status
-          }  with message '${await fileAttributesResponse.text()}'`
+          }  with message '${await fileAttributesResponse.text()}'`,
         );
 
         res
@@ -50,7 +50,7 @@ async function handler(req, res, agencyId) {
             addMetadataResponse.url
           }. Got unexpected status code ${
             addMetadataResponse.status
-          }  with message '${await addMetadataResponse.text()}'`
+          }  with message '${await addMetadataResponse.text()}'`,
         );
 
         res

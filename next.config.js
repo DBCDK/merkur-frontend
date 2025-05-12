@@ -1,5 +1,3 @@
-const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
-
 /**
  * @file
  * This is the configuration file for Next.js.
@@ -8,7 +6,7 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
  *
  * We set distDir, such that the build folder is located next to the storybook build
  */
-module.exports = (phase, { defautConfig }) => {
+const NextConfig = (phase, { defautConfig }) => {
   console.info("Next js phase: ", phase);
   console.info(`Filestore url = ${process.env.FILESTORE_URL}`);
 
@@ -28,3 +26,5 @@ module.exports = (phase, { defautConfig }) => {
     },
   };
 };
+
+export default NextConfig;

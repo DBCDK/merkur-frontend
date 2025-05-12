@@ -6,7 +6,11 @@ import { Button, Navbar } from "react-bootstrap";
 export const Header = ({ session }) => {
   // This could probably be done inline as well, however it causes rendering issues with next-auth login
   const onSignInOut = () => {
-    session ? signOut() : signIn();
+    if (session) {
+      signOut();
+    } else {
+      signIn();
+    }
   };
 
   return (
@@ -14,11 +18,10 @@ export const Header = ({ session }) => {
       <Navbar.Brand>
         <img
           className={styles.logo}
-          width="90"
+          width={90}
           src="/logo.png"
           alt="DBCs Posthus"
         />
-        {/*{brandName()}*/}
         <span className={styles.greeting}>
           DBCs Posthus {session && " - " + session.user.netpunktAgency}
         </span>

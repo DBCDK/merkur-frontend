@@ -27,7 +27,7 @@ async function handler(req, res, agencyId) {
             response.url
           }. Got unexpected status code ${
             response.status
-          }  with message '${await response.text()}'`
+          }  with message '${await response.text()}'`,
         );
 
         res.status(response.status).send(response.statusText);

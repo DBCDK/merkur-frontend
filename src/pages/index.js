@@ -15,13 +15,14 @@ export default function Index({ session }) {
     } else {
       router.push("/converted");
     }
-  }, [session]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session, router]);
 
   useEffect(() => {
     waitForSession();
-  }, []);
+  }, [waitForSession]);
 
-  return <div />;
+  return <div></div>;
 }
 
 export async function getServerSideProps(context) {

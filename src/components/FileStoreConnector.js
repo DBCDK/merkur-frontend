@@ -1,5 +1,3 @@
-import React from "react";
-
 const FILESTORE_URL = process.env.FILESTORE_URL || "filestore-url-not-set";
 
 export async function getFile(fileId) {

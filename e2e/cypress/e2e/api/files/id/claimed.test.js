@@ -28,7 +28,7 @@ describe("Tests /files/[id]/claimed endpoint", () => {
     }).then((response) => {
       expect(response.status).to.eq(403);
       expect(response.body).to.eq(
-        "Attempt to claim file owned by another agency"
+        "Attempt to claim file owned by another agency",
       );
     });
   });

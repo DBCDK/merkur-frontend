@@ -1,9 +1,11 @@
 import { FileList } from "@/components/FileList";
 
-export default {
+const exportedObject = {
   title: "Interne komponenter/FileList",
   component: FileList,
 };
+
+export default exportedObject;
 
 export function userIs010100() {
   return (

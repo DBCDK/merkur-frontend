@@ -1,9 +1,11 @@
 import { FileTable } from "@/components/FileTable";
 
-export default {
+const exportedObject = {
   title: "Interne komponenter/FileTable",
   component: FileTable,
 };
+
+export default exportedObject;
 
 export function emptyFileList() {
   return <FileTable files={[]} />;

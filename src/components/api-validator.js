@@ -1,4 +1,3 @@
-import React from "react";
 import { log } from "dbc-node-logger";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/pages/api/auth/[...nextauth]";
@@ -27,7 +26,7 @@ function authenticate(req, res) {
   res.setHeader("WWW-Authenticate", 'Basic realm="DBC merkur"');
   if (!req.headers.authorization) {
     log.info(
-      `Authorization failed from remote address '${clientIp}' - No Authorization header - returning 401 with WWW-Authenticate header (might not be an error)`
+      `Authorization failed from remote address '${clientIp}' - No Authorization header - returning 401 with WWW-Authenticate header (might not be an error)`,
     );
     res.status(401).send("Missing Authorization header");
     return undefined;
@@ -36,7 +35,7 @@ function authenticate(req, res) {
   let parts = req.headers.authorization.split(" ");
   if (parts.length !== 2) {
     log.error(
-      `Authorization failed from remote address '${clientIp}' - Authorization header has wrong format`
+      `Authorization failed from remote address '${clientIp}' - Authorization header has wrong format`,
     );
     res
       .status(401)
@@ -47,7 +46,7 @@ function authenticate(req, res) {
   // verify type
   if (parts[0].toLowerCase() !== "basic") {
     log.error(
-      `Authorization failed from remote address '${clientIp}' - Authorization type is not basic`
+      `Authorization failed from remote address '${clientIp}' - Authorization type is not basic`,
     );
     res.status(401).send("Authorization type must be Basic");
     return undefined;
@@ -55,13 +54,13 @@ function authenticate(req, res) {
 
   const encodedCredentials = parts[1];
   const decodedCredentials = Buffer.from(encodedCredentials, "base64").toString(
-    "utf8"
+    "utf8",
   );
   parts = decodedCredentials.split(":");
 
   if (parts.length !== 2) {
     log.error(
-      `Authorization failed from remote address '${clientIp}' - Apikey is missing either user or secret`
+      `Authorization failed from remote address '${clientIp}' - Apikey is missing either user or secret`,
     );
     res.status(401).send("Apikey must include both user and secret");
     return undefined;
@@ -73,7 +72,7 @@ function authenticate(req, res) {
   }
 
   log.error(
-    `Authorization failed from remote address '${clientIp}' - Unknown agency ID or apikey: '${parts[0]}'`
+    `Authorization failed from remote address '${clientIp}' - Unknown agency ID or apikey: '${parts[0]}'`,
   );
   res.status(401).send("Unknown agency ID or apikey");
   return undefined;
