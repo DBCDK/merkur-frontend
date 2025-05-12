@@ -26,7 +26,7 @@ describe("Tests /files/[id] endpoint", () => {
     }).then((response) => {
       expect(response.status).to.eq(403);
       expect(response.body).to.eq(
-        "Attempt to download file owned by another agency"
+        "Attempt to download file owned by another agency",
       );
     });
   });

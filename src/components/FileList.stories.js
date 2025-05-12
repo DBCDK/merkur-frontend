@@ -7,7 +7,6 @@ const exportedObject = {
 
 export default exportedObject;
 
-
 export function userIs010100() {
   return (
     <FileList

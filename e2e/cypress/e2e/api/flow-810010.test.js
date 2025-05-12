@@ -11,7 +11,7 @@ describe("Tests /files/[id]/claimed endpoint", () => {
         expect(response.status).to.eq(401);
         expect(response.headers).to.have.property(
           "www-authenticate",
-          'Basic realm="DBC merkur"'
+          'Basic realm="DBC merkur"',
         );
         expect(response.body).to.eq("Missing Authorization header");
       })

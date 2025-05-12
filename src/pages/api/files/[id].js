@@ -20,7 +20,7 @@ async function handler(req, res, agencyId) {
             fileAttributesResponse.url
           }. Got unexpected status code ${
             fileAttributesResponse.status
-          }  with message '${await fileAttributesResponse.text()}'`
+          }  with message '${await fileAttributesResponse.text()}'`,
         );
 
         res
@@ -48,7 +48,7 @@ async function handler(req, res, agencyId) {
             getFileResponse.url
           }. Got unexpected status code ${
             getFileResponse.status
-          }  with message '${await getFileResponse.text()}'`
+          }  with message '${await getFileResponse.text()}'`,
         );
 
         res.status(getFileResponse.status).send(getFileResponse.statusText);
