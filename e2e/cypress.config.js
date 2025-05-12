@@ -1,6 +1,6 @@
-import { defineConfig } from "cypress";
+const { defineConfig } = require("cypress");
 
-const cypressConfig = defineConfig({
+module.exports = defineConfig({
   reporter: "junit",
   reporterOptions: {
     mochaFile: "reports/test-result-[hash].xml",
