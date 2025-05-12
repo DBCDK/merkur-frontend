@@ -17,7 +17,7 @@ pipeline {
 		GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
 	}
     triggers {
-        cron( env.BRANCH_NAME == gitMainBranch ? 'H 2 * * 9' : '' )
+        cron( env.BRANCH_NAME == gitMainBranch ? 'H 2 * * 7' : '' )
         upstream(
             upstreamProjects: env.BRANCH_NAME == gitMainBranch ? 'Docker-base-node-bump-trigger' : '',
             threshold: hudson.model.Result.SUCCESS
