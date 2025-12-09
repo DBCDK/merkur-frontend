@@ -6,7 +6,7 @@
  *
  * We set distDir, such that the build folder is located next to the storybook build
  */
-const NextConfig = (phase, { defautConfig }) => {
+const NextConfig = (phase) => {
   console.info("Next js phase: ", phase);
   console.info(`Filestore url = ${process.env.FILESTORE_URL}`);
 
@@ -24,6 +24,7 @@ const NextConfig = (phase, { defautConfig }) => {
       });
       return config;
     },
+    turbopack: {},
   };
 };
 

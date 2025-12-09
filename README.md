@@ -27,8 +27,6 @@ The following environment variables can be set in the application
 
 - **PORT**
   Port on which Next.js runs. Default is 3000.
-- **STORYBOOK_PORT**
-  Port on which storybook runs. Defaults is 4000.
 
 Create a file in the root of the project called `.env.local`
 
@@ -50,7 +48,6 @@ FILESTORE_URL=http://dataio-filestore-service.metascrum-staging.svc.cloud.dbc.dk
 ### npm
 
 - `npm install` install dependencies
-- `npm run dev:storybook` starts a Storybook development server for developing React components in isolation
 - `npm run dev:next` starts Next.js development server that runs the actual application
 
 ### docker-compose
