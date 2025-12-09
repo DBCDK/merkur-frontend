@@ -1,11 +1,11 @@
 #!groovy
 
 def app
-def workerNode = "devel11"
+def workerNode = "devel12"
 def BASE_NAME = 'docker-metascrum.artifacts.dbccloud.dk/merkur-frontend'
 def cypressImage = "docker-dbc.artifacts.dbccloud.dk/cypress:latest"
 def appName = "merkur-frontend"
-def slackChannel = "meta-notifications"
+def slackChannel = "team-x-notice"
 def gitMainBranch = 'main'
 
 pipeline {
