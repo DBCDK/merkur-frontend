@@ -13,7 +13,7 @@ pipeline {
     environment {
         IMAGE_TAG = "${env.BRANCH_NAME.toLowerCase()}-${BUILD_NUMBER}"
         IMAGE_NAME = "${BASE_NAME}:${IMAGE_TAG}"
-        DOCKER_COMPOSE_NAME = "compose-${appName}-${BRANCH_NAME}-${BUILD_NUMBER}"
+        DOCKER_COMPOSE_NAME = "compose-${appName}-${BRANCH_NAME}-${BUILD_NUMBER}".toLowerCase()
 		GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
 	}
     triggers {
