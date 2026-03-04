@@ -27,7 +27,7 @@
     "bootstrap": "^5.3.6",
     "dbc-node-logger": "^2.0.13",
     "font-awesome": "^4.7.0",
-    "next": "16.1.0",
+    "next": "^16.1.6",
     "next-auth": "4.24.13",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
@@ -35,16 +35,15 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "eslint": "^9.26.0",
-    "eslint-config-next": "15.3.2",
-    "eslint-config-prettier": "^10.1.5",
     "@svgr/webpack": "^8.1.0",
+    "cypress": "13.17.0",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "^16.1.6",
+    "eslint-config-prettier": "^10.1.5",
     "lazysizes": "^5.3.2",
     "prettier": "^3.5.3",
-    "storybook": "10.1.10",
+    "storybook": "^10.2.10",
     "webpack": "^5.99.8",
-    "webpack-cli": "^6.0.1",
-    "cypress": "13.17.0"
+    "webpack-cli": "^6.0.1"
   }
 }
-
