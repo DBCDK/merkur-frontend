@@ -1,3 +1,4 @@
+// src/pages/converted/index.js
 import { useEffect, useState } from "react";
 import { getServerSession } from "next-auth/next";
 import { conversionsOrigin, defaultCategory } from "@/constants";
@@ -6,41 +7,47 @@ import { options } from "@/pages/api/auth/[...nextauth]";
 
 const ConversionPage = ({ session }) => {
   const [files, setFiles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const data = {
       category: defaultCategory,
       origin: conversionsOrigin,
     };
-    setIsLoading(true);
+
     fetch("/api/files/search", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     })
       .then(async (response) => {
         if (!response.ok) {
           const text = await response.text();
           alert(text);
-          throw response;
+          throw new Error(text);
         }
         return response.json();
       })
       .then((item) => {
-        setIsLoading(false);
         setFiles(item);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
   return (
-    <>
-      <FileList
-        title="Konverteringsservice"
-        files={files}
-        isLoading={isLoading}
-        loginAgency={session.user.netpunktAgency}
-      />
-    </>
+    <FileList
+      title="Konverteringsservice"
+      files={files}
+      isLoading={isLoading}
+      loginAgency={session.user.netpunktAgency}
+    />
   );
 };
 

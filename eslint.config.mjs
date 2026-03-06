@@ -1,28 +1,15 @@
-//{
-//  "parser": "babel-eslint",
-//  "plugins": ["prettier"],
-//  "rules": {
-//    "prettier/prettier": "error"
-//  }
-//}
+// eslint.config.mjs
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import prettierConfig from "eslint-config-prettier/flat";
 
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.config({
-    extends: ["next", "next/core-web-vitals", "next/typescript", "prettier"],
-    settings: {},
-    rules: {},
-  }),
-];
-
-export default eslintConfig;
+export default defineConfig([
+  ...nextVitals,
+  prettierConfig,
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
