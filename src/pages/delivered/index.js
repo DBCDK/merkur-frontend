@@ -1,4 +1,3 @@
-// src/pages/delivered/index.js
 import { useEffect, useState } from "react";
 import { defaultCategory, periodicJobsOrigin } from "@/constants";
 import { FileList } from "@/components/FileList";

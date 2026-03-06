@@ -1,4 +1,3 @@
-// src/pages/converted/index.js
 import { useEffect, useState } from "react";
 import { getServerSession } from "next-auth/next";
 import { conversionsOrigin, defaultCategory } from "@/constants";
