@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth/next";
 import { conversionsOrigin, defaultCategory } from "@/constants";
 import { FileList } from "@/components/FileList";
 import { options } from "@/pages/api/auth/[...nextauth]";
+import { log } from "dbc-node-logger";
 
 const ConversionPage = ({ session }) => {
   const [files, setFiles] = useState([]);
@@ -34,7 +35,7 @@ const ConversionPage = ({ session }) => {
         setFiles(item);
       })
       .catch((error) => {
-        console.error(error);
+        log.error("ConversionPage error", { error: error });
       })
       .finally(() => {
         setIsLoading(false);

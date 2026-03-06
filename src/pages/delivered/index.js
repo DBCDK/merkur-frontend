@@ -4,6 +4,7 @@ import { defaultCategory, periodicJobsOrigin } from "@/constants";
 import { FileList } from "@/components/FileList";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/pages/api/auth/[...nextauth]";
+import { log } from "dbc-node-logger";
 
 const PeriodicJobsPage = ({ session }) => {
   const [files, setFiles] = useState([]);
@@ -34,7 +35,7 @@ const PeriodicJobsPage = ({ session }) => {
         setFiles(item);
       })
       .catch((error) => {
-        console.error(error);
+        log.error("PeriodicJobsPage error", { error: error });
       })
       .finally(() => {
         setIsLoading(false);
