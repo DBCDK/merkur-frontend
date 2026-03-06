@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { signIn, signOut } from "@dbcdk/login-nextjs/client";
-import styles from "@/components/Header.module.css";
+import styles from "./Header.module.css";
 import { Button, Navbar } from "react-bootstrap";
 
 export const Header = ({ session }) => {
