@@ -7,8 +7,8 @@ async function handler(req, res, agencyId) {
   if (agencyId !== undefined) {
     if (req.method === "POST") {
       log.info(agencyId + " listing files");
-
-      const data = JSON.parse(req.body);
+      const data =
+        typeof req.body === "string" ? JSON.parse(req.body) : { ...req.body };
 
       if (agencyId === adminAgency) {
         data.category = defaultCategory;
