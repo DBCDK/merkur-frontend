@@ -11,7 +11,7 @@ USER node
 
 # install dependencies
 RUN npm set progress=false && npm config set depth 0 && \
-    npm install
+    npm ci --ignore-scripts --allow-git=none --min-release-age=3
 
 # Run lint
 RUN npm run lint

@@ -47,7 +47,7 @@ FILESTORE_URL=http://dataio-filestore-service.metascrum-staging.svc.cloud.dbc.dk
 
 ### npm
 
-- `npm install` install dependencies
+- `npm ci` install dependencies
 - `npm run dev:next` starts Next.js development server that runs the actual application
 
 ### docker-compose
