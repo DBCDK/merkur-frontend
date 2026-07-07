@@ -20,7 +20,7 @@ else
 fi
 
 
-export CYPRESS_IMAGE=docker-dbc.artifacts.dbccloud.dk/cypress:old-202228
+export CYPRESS_IMAGE=docker-dbc.artifacts.dbccloud.dk/cypress:old-202621
 docker pull ${CYPRESS_IMAGE}
 docker compose -f docker-compose-cypress.yml -p compose-${COMPOSE_NAME} up -d wiremock
 docker compose -f docker-compose-cypress.yml -p compose-${COMPOSE_NAME} up -d web
