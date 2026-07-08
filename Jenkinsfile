@@ -1,12 +1,44 @@
 #!groovy
+// ------- Dependency-track library ---------
+// Import `generateSbomNpm()` and `dependencyTrackGate()`
+@Library('dependency-track')
 
 def app
 def workerNode = "devel12"
 def BASE_NAME = 'docker-metascrum.artifacts.dbccloud.dk/merkur-frontend'
-def cypressImage = "docker-dbc.artifacts.dbccloud.dk/cypress:latest"
+def cypressImage = "docker-dbc.artifacts.dbccloud.dk/cypress:old-202621"
 def appName = "merkur-frontend"
 def slackChannel = "team-x-notice"
 def gitMainBranch = 'main'
+
+// ------- Environment variables ---------
+// Dependency track environment variables
+// MANDATORY: Dependency track environment vars
+// // DT_TEAM_NAME: The name of your team. Should be the same across your projects
+def DT_TEAM_NAME = "team-x"
+// // DT_PROJECT_TYPE: Should probably be javascript, but we can change this, if it should be necessary
+def DT_PROJECT_TYPE = "javascript" // Currently, "python" and "java" are also available for dbc's dependency-track
+// // OUTPUT_FOLDER: The folder where you want to temporarily place your sbom.json and vex.json files while you build the project.
+def OUTPUT_FOLDER = "./dependency-track-folder" // Can be something else, e.g. `./target`
+// // SBOM_TYPE: The type of SBOM_TYPE application that the project is. Most often `application`
+def SBOM_TYPE = "application" // type: `application | library | framework`
+
+// // DT_PROJECTS: The projects that should be scanned.
+// //              Most of the time it should just be the root-project: def DT_PROJECTS=[[folder: "."]]
+// Handle each project/subproject seperately (nice if there are different SBOM_TYPEs, DT_PROJECT_TYPEs, or OUTPUT_FOLDERs)
+//   You can write these projects out more explicitly if you like
+// MANDATORY: folder, outputFolder, teamName, projectType, sbomType
+def DT_PROJECTS = [
+  [folder: "."],
+].collect { project ->
+  [
+   folder: project.folder,
+   sbomType: project.sbomType ?: SBOM_TYPE,
+   teamName: project.teamName ?: DT_TEAM_NAME,
+   projectType: project.projectType ?: DT_PROJECT_TYPE,
+   outputFolder: project.outputFolder ?: OUTPUT_FOLDER
+  ]
+}
 
 pipeline {
 	agent {label workerNode}
@@ -34,6 +66,34 @@ pipeline {
                 deleteDir()
                 checkout scm
             }
+        }
+        stage("Supply-chain gate") {
+          agent {
+            docker {
+              label workerNode
+              image "docker-dbc.artifacts.dbccloud.dk/dbc-node:node25"
+              alwaysPull true
+            }
+          }
+          steps {
+            script {
+              // Iterate over each folder
+              for (def project : DT_PROJECTS) {
+                dir(project.folder) {
+                  generateSbomNpm(
+                    sbomType: project.sbomType,
+                    outputFolder: project.outputFolder
+                  )
+                  dependencyTrackGate(
+                    projectBom:  "${project.outputFolder}/sbom.json",
+                    projectTeam: project.teamName,
+                    projectType: project.projectType,
+                    *:(fileExists("${project.outputFolder}/vex.json") ? [projectVex: "${project.outputFolder}/vex.json"] : [:])
+                  )
+                }
+              }
+            }
+          }
         }
         stage('Build') {
             steps {
